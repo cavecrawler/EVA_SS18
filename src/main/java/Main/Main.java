@@ -12,7 +12,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
-        String XLS_Filepath = "C:\\Users\\chris\\IdeaProjects\\EVA_ExcelImporter\\src\\main\\resources\\Rohdaten.xlsx";
+        String XLS_Filepath = "C:\\Users\\chrisso\\Documents\\JavaProjects\\src\\main\\resources\\Rohdaten.xlsx";
 
         ExcelLoader excelLoader = new ExcelLoader(XLS_Filepath);
         DataFormatter dataFormatter = new DataFormatter();
@@ -32,16 +32,16 @@ public class Main {
 
         System.out.println("Extraced CellValue: " + cellValue);
         LocalDate localDate = dateConverter.formatDate(cellValue);
-        NS.setNumberSetDate(localDate);
+        NS.setDate(localDate);
 
         System.out.println("Fetch associated values.");
         cell = sheet.getRow(1).getCell(2);
         String floatString = dataFormatter.formatCellValue(cell);
         floatString = floatString.replace(',','.');
         float input = Float.valueOf(floatString);
-        NS.setNumberSetValues(input);
-        System.out.println("Date return from NumberSet: " + NS.getNumberSetDate());
-        System.out.println("Value return from NumberSet: " + NS.getNumberSetValues(0));
+        NS.setValues(input);
+        System.out.println("Date return from NumberSet: " + NS.getDate());
+        System.out.println("Value return from NumberSet: " + NS.getValues(0));
         */
 
         Iterator<Row> rowIterator = sheet.rowIterator();
@@ -49,29 +49,29 @@ public class Main {
         int rowCounter = 0;
         while (rowIterator.hasNext()) {
             Row currentRow = rowIterator.next();
-            NumberSets.add(new NumberSet());
-            Iterator<Cell> cellIterator = currentRow.cellIterator();
-            int counter = 0;
+            if (rowCounter != 0) {
+                NumberSet currentNumberSet = new NumberSet();
+                Iterator<Cell> cellIterator = currentRow.cellIterator();
+                int counter = 0;
                 while (cellIterator.hasNext()) {
                     Cell currentCell = cellIterator.next();
                     String cellValue = dataFormatter.formatCellValue(currentCell);
                     if (cellValue != "" && counter == 0) {
                         LocalDate localDate = dateConverter.formatDate(cellValue);
-                        NumberSets.get(rowCounter).setNumberSetDate(localDate);
-                        System.out.println(NumberSets.get(rowCounter).getNumberSetDate());
+                        currentNumberSet.setDate(localDate);
+                        System.out.println(currentNumberSet.getDate());
                         counter++;
                     } else if (cellValue != "") {
                         String floatString = dataFormatter.formatCellValue(currentCell);
                         floatString = floatString.replace(',', '.');
                         float input = Float.valueOf(floatString);
-                        NumberSets.get(rowCounter).setNumberSetValues(input);
-                        System.out.println("Value of " + NumberSets.get(rowCounter).getNumberSetValues(counter));
+                        currentNumberSet.setValues(input);
+                        System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
+                        counter++;
                     }
                 }
+            }
             rowCounter++;
         }
-
-        System.out.println("Workbook has " + workbook.getNumberOfSheets() + " Sheets.");
     }
-
 }
