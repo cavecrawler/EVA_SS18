@@ -20,14 +20,13 @@ public class Main {
 
         System.out.println("Main: Job finished.");
 
-        //testabfrage eines Listenelements
-
+        //testabfragen von Listenelementen
         KPICalc kpiCalc = new KPICalc(NumberSetList);
         NumberSet targetNumberSet = kpiCalc.getTargetDate("6/22/17");
-        System.out.print("Ausgabe über Methodenaufruf printDate()");
+        System.out.print("Ausgabe über Methodenaufruf printDate(): ");
         targetNumberSet.printDate();
         float profit = kpiCalc.calculateYoYProfit("6/22/18", 1);
-        System.out.println("Die Performance YoY ist: " + profit*100 + "%.");
+        System.out.println("Die Performance YoY ist: " + profit * 100 + "%.");
 
     }
 }
