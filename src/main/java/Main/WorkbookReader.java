@@ -46,12 +46,13 @@ public class WorkbookReader {
                         //Zellen mit Values werden in das NumberSet geschrieben.
                         String floatString = dataFormatter.formatCellValue(currentCell);
                         floatString = floatString.replace(',', '.');
+                        float input;
                         try {
-                            float input = Float.parseFloat(floatString);
-                            currentNumberSet.setValues(input);
+                            input = Float.parseFloat(floatString);
                         } catch (NumberFormatException e) {
-                            float input = 0.0f;
+                            input = 0.0f;
                         }
+                        currentNumberSet.setValues(input);
                         System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
                         counter++;
                     }
