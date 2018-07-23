@@ -12,12 +12,14 @@ public class WorkbookReader {
     private Sheet currentSheet;
 
     public WorkbookReader(Workbook workbook, int i) {
+
         currentWorkbook = workbook;
         currentSheet = workbook.getSheetAt(i);
     }
 
 
     public ArrayList<NumberSet> getNumberSetList() {
+
         DataFormatter dataFormatter = new DataFormatter();
         DateConverter dateConverter = new DateConverter();
         ArrayList<NumberSet> numberSetList = new ArrayList<>();
@@ -31,10 +33,9 @@ public class WorkbookReader {
             if (rowCounter != 0) {
                 NumberSet currentNumberSet = new NumberSet();
                 Iterator<Cell> cellIterator = currentRow.cellIterator();
-
                 int counter = 0;
-                while (cellIterator.hasNext()) {
 
+                while (cellIterator.hasNext()) {
                     Cell currentCell = cellIterator.next();
                     String cellValue = dataFormatter.formatCellValue(currentCell);
 
@@ -44,16 +45,19 @@ public class WorkbookReader {
                         currentNumberSet.setDate(localDate);
                         System.out.println(currentNumberSet.getDate());
                         counter++;
+
                     } else if (cellValue != "") {
                         //Zellen mit Values werden in das NumberSet geschrieben.
                         String floatString = dataFormatter.formatCellValue(currentCell);
                         floatString = floatString.replace(',', '.');
                         float input;
+
                         try {
                             input = Float.parseFloat(floatString);
                         } catch (NumberFormatException e) {
                             input = 0.0f;
                         }
+
                         currentNumberSet.setValues(input);
                         System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
                         counter++;

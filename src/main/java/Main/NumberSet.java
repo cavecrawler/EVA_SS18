@@ -20,8 +20,10 @@ public class NumberSet {
 
     public LocalDate getDate() {
         if (numberSetDate != null) {
+
             return numberSetDate;
         }
+
         return null;
     }
 
