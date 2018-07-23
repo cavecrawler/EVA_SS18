@@ -27,9 +27,11 @@ public class WorkbookReader {
         while (rowIterator.hasNext()) {
 
             Row currentRow = rowIterator.next();
+
             if (rowCounter != 0) {
                 NumberSet currentNumberSet = new NumberSet();
                 Iterator<Cell> cellIterator = currentRow.cellIterator();
+
                 int counter = 0;
                 while (cellIterator.hasNext()) {
 
