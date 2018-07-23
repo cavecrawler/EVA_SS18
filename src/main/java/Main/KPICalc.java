@@ -37,7 +37,6 @@ public class KPICalc {
         NumberSet yearAgoNumberSet = new NumberSet();
         LocalDate startNumberSetDate;
         targetDate = dateConverter.formatDate(startDate);
-
         for (NumberSet currentNumberSet : NumberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             if (currentNumberSetDate.equals(targetDate)) {
@@ -46,24 +45,20 @@ public class KPICalc {
                 break;
             }
         }
-
-        for (NumberSet currentNumberSet : NumberSetList){
+        for (NumberSet currentNumberSet : NumberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             targetDate = startNumberSet.getDate();
-            targetDate = targetDate.minusYears(1);
-            if (currentNumberSetDate.equals(targetDate)){
+            targetDate = targetDate.minusYears(1); //ersetzen durch j, sobald mehr daten vorliegen
+            if (currentNumberSetDate.equals(targetDate)) {
                 yearAgoNumberSet = currentNumberSet;
                 break;
             }
         }
-
         float startwert = startNumberSet.getValues(i);
         float endwert = yearAgoNumberSet.getValues(i);
-        float profitYoY = (startwert / endwert) -1;
+        float profitYoY = (startwert / endwert) - 1;
         return profitYoY;
     }
-
-
 
 
 //endofclass

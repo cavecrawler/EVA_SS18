@@ -20,7 +20,7 @@ public class WorkbookReader {
     public ArrayList<NumberSet> getNumberSetList() {
         DataFormatter dataFormatter = new DataFormatter();
         DateConverter dateConverter = new DateConverter();
-        ArrayList<NumberSet> NumberSetList = new ArrayList<>();
+        ArrayList<NumberSet> numberSetList = new ArrayList<>();
         Iterator<Row> rowIterator = currentSheet.rowIterator();
 
         int rowCounter = 0;
@@ -40,23 +40,28 @@ public class WorkbookReader {
                         //Die erste Zelle mit Datum wird in das NumberSet geschrieben.
                         LocalDate localDate = dateConverter.formatDate(cellValue);
                         currentNumberSet.setDate(localDate);
-                        //System.out.println(currentNumberSet.getDate());
+                        System.out.println(currentNumberSet.getDate());
                         counter++;
                     } else if (cellValue != "") {
                         //Zellen mit Values werden in das NumberSet geschrieben.
                         String floatString = dataFormatter.formatCellValue(currentCell);
                         floatString = floatString.replace(',', '.');
-                        float input = Float.valueOf(floatString);
+                        float input;
+                        try {
+                            input = Float.parseFloat(floatString);
+                        } catch (NumberFormatException e) {
+                            input = 0.0f;
+                        }
                         currentNumberSet.setValues(input);
-                        //System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
+                        System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
                         counter++;
                     }
                 }
-                NumberSetList.add(currentNumberSet);
+                numberSetList.add(currentNumberSet);
             }
             rowCounter++;
         }
-        System.out.println("WorkbookReader: NumberSetList has been created.");
-        return NumberSetList;
+        System.out.println("WorkbookReader: numberSetList has been created.");
+        return numberSetList;
     }
 }

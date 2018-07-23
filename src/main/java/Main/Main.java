@@ -15,19 +15,18 @@ public class Main {
         ArrayList<NumberSet> NumberSetList = new ArrayList<>();
         //workbook holen. sheet extrahieren
         Workbook workbook = excelLoader.getWorkbook();
-        WorkbookReader workbookReader = new WorkbookReader(workbook, 0);
+        WorkbookReader workbookReader = new WorkbookReader(workbook, 1);
         NumberSetList = workbookReader.getNumberSetList();
 
         System.out.println("Main: Job finished.");
 
-        //testabfrage eines Listenelements
-
+        //testabfragen von Listenelementen
         KPICalc kpiCalc = new KPICalc(NumberSetList);
         NumberSet targetNumberSet = kpiCalc.getTargetDate("6/22/17");
-        System.out.print("Ausgabe über Methodenaufruf printDate()");
+        System.out.print("Ausgabe über Methodenaufruf printDate(): ");
         targetNumberSet.printDate();
         float profit = kpiCalc.calculateYoYProfit("6/22/18", 1);
-        System.out.println("Die Performance YoY ist: " + profit*100 + "%.");
+        System.out.println("Die Performance YoY ist: " + profit * 100 + "%.");
 
     }
 }
