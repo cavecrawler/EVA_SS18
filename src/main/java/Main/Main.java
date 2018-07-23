@@ -23,8 +23,11 @@ public class Main {
         //testabfrage eines Listenelements
 
         KPICalc kpiCalc = new KPICalc(NumberSetList);
-        NumberSet targetNumberSet = kpiCalc.getTargetDate("6/26/17");
+        NumberSet targetNumberSet = kpiCalc.getTargetDate("6/22/17");
+        System.out.print("Ausgabe über Methodenaufruf printDate()");
         targetNumberSet.printDate();
+        float profit = kpiCalc.calculateYoYProfit("6/22/18", 1);
+        System.out.println("Die Performance YoY ist: " + profit*100 + "%.");
 
     }
 }

@@ -28,9 +28,42 @@ public class KPICalc {
                 break;
             }
         }
-        System.out.println("Kein passendes NumberSet vorhanden.");
         return targetNumberSet;
     }
+
+    public Float calculateYoYProfit(String startDate, int i) {
+        DateConverter dateConverter = new DateConverter();
+        NumberSet startNumberSet = new NumberSet();
+        NumberSet yearAgoNumberSet = new NumberSet();
+        LocalDate startNumberSetDate;
+        targetDate = dateConverter.formatDate(startDate);
+
+        for (NumberSet currentNumberSet : NumberSetList) {
+            currentNumberSetDate = currentNumberSet.getDate();
+            if (currentNumberSetDate.equals(targetDate)) {
+                startNumberSet = currentNumberSet;
+                startNumberSetDate = startNumberSet.getDate();
+                break;
+            }
+        }
+
+        for (NumberSet currentNumberSet : NumberSetList){
+            currentNumberSetDate = currentNumberSet.getDate();
+            targetDate = startNumberSet.getDate();
+            targetDate = targetDate.minusYears(1);
+            if (currentNumberSetDate.equals(targetDate)){
+                yearAgoNumberSet = currentNumberSet;
+                break;
+            }
+        }
+
+        float startwert = startNumberSet.getValues(i);
+        float endwert = yearAgoNumberSet.getValues(i);
+        float profitYoY = (startwert / endwert) -1;
+        return profitYoY;
+    }
+
+
 
 
 //endofclass
