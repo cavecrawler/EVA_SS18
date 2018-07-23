@@ -15,7 +15,7 @@ public class Main {
         ArrayList<NumberSet> NumberSetList = new ArrayList<>();
         //workbook holen. sheet extrahieren
         Workbook workbook = excelLoader.getWorkbook();
-        WorkbookReader workbookReader = new WorkbookReader(workbook, 0);
+        WorkbookReader workbookReader = new WorkbookReader(workbook, 1);
         NumberSetList = workbookReader.getNumberSetList();
 
         System.out.println("Main: Job finished.");
