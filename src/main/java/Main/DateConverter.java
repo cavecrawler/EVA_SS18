@@ -6,8 +6,9 @@ import java.time.format.DateTimeFormatter;
 public class DateConverter {
 
     public LocalDate formatDate(String cellValue) throws DateTimeException {
-        DateTimeFormatter df = DateTimeFormatter.ofPattern("M/d/yy");
+
         try {
+            DateTimeFormatter df = DateTimeFormatter.ofPattern("M/d/yy");
             LocalDate FormattedDateOut = LocalDate.parse(cellValue,df);
             return FormattedDateOut;
         }

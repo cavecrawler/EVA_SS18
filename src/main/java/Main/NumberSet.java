@@ -21,11 +21,17 @@ public class NumberSet {
     public LocalDate getDate() {
         if (numberSetDate != null) {
             return numberSetDate;
-        } return null;
+        }
+        return null;
     }
 
     public float getValues(int j) {
         return numberSetValues.get(j);
     }
+
+    public void printDate() {
+        System.out.println("\nDas Datum dieses NumberSets ist: " + numberSetDate);
+    }
+
 }
 

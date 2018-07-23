@@ -18,7 +18,8 @@ public class ExcelLoader {
     }
 
     public Workbook getWorkbook() throws IOException, InvalidFormatException {
-            workbook = WorkbookFactory.create(new File(XLS_Filepath));
-            return workbook;
+        workbook = WorkbookFactory.create(new File(XLS_Filepath));
+        System.out.println("ExcelLoader: Workbook has been created.");
+        return workbook;
     }
 }
