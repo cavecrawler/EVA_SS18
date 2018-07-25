@@ -10,22 +10,30 @@ public class NumberSet {
     private LocalDate numberSetDate = null;
     private ArrayList<Float> numberSetValues = new ArrayList<>();
 
-    public void setNumberSetDate(LocalDate date) {
+    public void setDate(LocalDate date) {
         this.numberSetDate = date;
     }
 
-    public void setNumberSetValues(float i) {
+    public void setValues(float i) {
         numberSetValues.add(i);
     }
 
-    public LocalDate getNumberSetDate() {
+    public LocalDate getDate() {
         if (numberSetDate != null) {
+
             return numberSetDate;
-        } return null;
+        }
+
+        return null;
     }
 
-    public float getNumberSetValues(int j) {
+    public float getValues(int j) {
         return numberSetValues.get(j);
     }
+
+    public void printDate() {
+        System.out.println("\nDas Datum dieses NumberSets ist: " + numberSetDate);
+    }
+
 }
 
