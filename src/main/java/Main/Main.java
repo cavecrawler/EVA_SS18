@@ -10,6 +10,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
+
         String XLS_Filepath = "C:\\Users\\chris\\IdeaProjects\\EVA_ExcelImporter\\src\\main\\resources\\Rohdaten.xlsx";
         ExcelLoader excelLoader = new ExcelLoader(XLS_Filepath);
         ArrayList<NumberSet> numberSetList = new ArrayList<>();
@@ -34,7 +35,6 @@ public class Main {
 
         //YoY Profit
         //float profit = kpiCalc.calculateYoYProfit("6/24/18", 0);
-
 
     }
 }

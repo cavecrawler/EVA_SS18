@@ -43,7 +43,10 @@ public class WorkbookReader {
                         //Die erste Zelle mit Datum wird in das NumberSet geschrieben.
                         LocalDate localDate = dateConverter.formatDate(cellValue);
                         currentNumberSet.setDate(localDate);
+
                         //System.out.println(currentNumberSet.getDate());
+
+
                         counter++;
 
                     } else if (cellValue != "") {
@@ -59,7 +62,9 @@ public class WorkbookReader {
                         }
 
                         currentNumberSet.setValues(input);
+
                         //System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
+
                         counter++;
                     }
                 }

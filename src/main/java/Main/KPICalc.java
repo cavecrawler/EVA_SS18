@@ -11,7 +11,7 @@ public class KPICalc {
     private LocalDate currentNumberSetDate;
 
     public KPICalc(ArrayList<NumberSet> NumberSetList) {
-
+      
         this.NumberSetList = NumberSetList;
     }
 
@@ -33,7 +33,9 @@ public class KPICalc {
         return targetNumberSet;
     }
 
+
     public Float calculateYoYProfit(String startDate, int i, int j) {
+
         DateConverter dateConverter = new DateConverter();
         NumberSet startNumberSet = new NumberSet();
         NumberSet yearAgoNumberSet = new NumberSet();
