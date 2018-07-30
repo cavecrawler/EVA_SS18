@@ -55,7 +55,7 @@ public class KPICalc {
         for (NumberSet currentNumberSet : NumberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             targetDate = startNumberSet.getDate();
-            targetDate = targetDate.minusYears(j);//ersetzen durch j, sobald mehr daten vorliegen
+            targetDate = targetDate.minusYears(j);
 
 
             if (currentNumberSetDate.equals(targetDate)) {
