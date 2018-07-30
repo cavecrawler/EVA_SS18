@@ -27,6 +27,7 @@ public class Main {
             executor.submit(new Worker(id, 1, numberSetList));
         }
 
+        executor.shutdown();
 
 
 
