@@ -5,9 +5,9 @@ import java.util.ArrayList;
 public class CustomThread extends Thread {
 
     int kennzahl;
-    ArrayList<NumberSet> numberSetList;
+    NumberSetList numberSetList;
 
-    public CustomThread(int kennzahl, ArrayList<NumberSet> numberSetList) {
+    public CustomThread(int kennzahl, NumberSetList numberSetList) {
 
         this.numberSetList = numberSetList;
         this.kennzahl = kennzahl;

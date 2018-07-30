@@ -2,6 +2,8 @@ package Main;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -10,31 +12,29 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
-
-        String XLS_Filepath = "C:\\Users\\chris\\IdeaProjects\\EVA_ExcelImporter\\src\\main\\resources\\Rohdaten.xlsx";
+        ConfigReader config = new ConfigReader();
+        String XLS_Filepath = "C:\\Users\\chrisso\\Documents\\JavaProjects\\src\\main\\resources\\ROhdaten.xlsx";
         ExcelLoader excelLoader = new ExcelLoader(XLS_Filepath);
-        ArrayList<NumberSet> numberSetList = new ArrayList<>();
-        //workbook holen. sheet extrahieren
-        Workbook workbook = excelLoader.getWorkbook();
-        WorkbookReader workbookReader = new WorkbookReader(workbook, 0);
-        numberSetList = workbookReader.getNumberSetList();
 
+        Workbook workbook = excelLoader.getWorkbook(); //workbook holen
+        WorkbookReader workbookReader = new WorkbookReader(workbook, 0); //workbookReader starten
+        NumberSetList numberSetList = workbookReader.getNumberSetList(); // numberSetList aus workbook lesen
         System.out.println("Main: Job finished.");
 
-        CustomThread customThread1 = new CustomThread(1,numberSetList);
-        CustomThread customThread2 = new CustomThread(3,numberSetList);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
 
-        customThread1.run();
-        customThread2.run();
+        for (int id = 1; id < 6; id++) {
+            executor.submit(new Worker(id, 1, numberSetList));
+        }
 
-        //testabfragen von Listenelementen
-//        KPICalc kpiCalc = new KPICalc(numberSetList);
-//        NumberSet targetNumberSet = kpiCalc.getTargetDate("6/22/17");
-//        System.out.print("Ausgabe über Methodenaufruf printDate(): ");
-//       targetNumberSet.printDate();
 
-        //YoY Profit
-        //float profit = kpiCalc.calculateYoYProfit("6/24/18", 0);
+
+
+//        CustomThread customThread1 = new CustomThread(1, numberSetList);
+//        CustomThread customThread2 = new CustomThread(3, numberSetList);
+//        customThread1.run();
+//        customThread2.run();
+
 
     }
 }

@@ -18,11 +18,11 @@ public class WorkbookReader {
     }
 
 
-    public ArrayList<NumberSet> getNumberSetList() {
+    public NumberSetList getNumberSetList() {
 
         DataFormatter dataFormatter = new DataFormatter();
         DateConverter dateConverter = new DateConverter();
-        ArrayList<NumberSet> numberSetList = new ArrayList<>();
+        NumberSetList numberSetList = new NumberSetList();
         Iterator<Row> rowIterator = currentSheet.rowIterator();
 
         int rowCounter = 0;
@@ -68,7 +68,7 @@ public class WorkbookReader {
                         counter++;
                     }
                 }
-                numberSetList.add(currentNumberSet);
+                numberSetList.addNumberSet(currentNumberSet);
             }
             rowCounter++;
         }
