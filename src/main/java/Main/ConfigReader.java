@@ -1,8 +1,5 @@
 package Main;
 
-import sun.security.krb5.Config;
-
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
