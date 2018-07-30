@@ -29,7 +29,8 @@ public class Main {
 
         executor.shutdown();
 
-
+        KPICalc Calc = new KPICalc(numberSetList);
+        System.out.println(Calc.calculate_MaxDD());
 
 //        CustomThread customThread1 = new CustomThread(1, numberSetList);
 //        CustomThread customThread2 = new CustomThread(3, numberSetList);
