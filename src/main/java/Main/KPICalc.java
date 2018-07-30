@@ -6,13 +6,13 @@ import java.util.ArrayList;
 
 public class KPICalc {
 
-    private ArrayList<NumberSet> NumberSetList;
+    private ArrayList<NumberSet> numberSetList;
     private LocalDate targetDate;
     private LocalDate currentNumberSetDate;
 
-    public KPICalc(ArrayList<NumberSet> NumberSetList) {
+    public KPICalc(NumberSetList numberSetList) {
       
-        this.NumberSetList = NumberSetList;
+        this.numberSetList = numberSetList.getNumberSetList();
     }
 
     public NumberSet getTargetDate(String startDate) {
@@ -20,7 +20,7 @@ public class KPICalc {
         NumberSet targetNumberSet = new NumberSet();
         targetDate = dateConverter.formatDate(startDate);
 
-        for (NumberSet currentNumberSet : NumberSetList) {
+        for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
 
             if (currentNumberSetDate.equals(targetDate)) {
@@ -34,7 +34,7 @@ public class KPICalc {
     }
 
 
-    public Float calculateYoYProfit(String startDate, int i, int j) {
+    public Float calculateYoYProfit(String startDate, int index, int years) {
 
         DateConverter dateConverter = new DateConverter();
         NumberSet startNumberSet = new NumberSet();
@@ -42,7 +42,7 @@ public class KPICalc {
         LocalDate startNumberSetDate;
         targetDate = dateConverter.formatDate(startDate);
 
-        for (NumberSet currentNumberSet : NumberSetList) {
+        for (NumberSet currentNumberSet : numberSetList) { //
             currentNumberSetDate = currentNumberSet.getDate();
 
             if (currentNumberSetDate.equals(targetDate)) {
@@ -52,10 +52,10 @@ public class KPICalc {
             }
         }
 
-        for (NumberSet currentNumberSet : NumberSetList) {
+        for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             targetDate = startNumberSet.getDate();
-            targetDate = targetDate.minusYears(j);//ersetzen durch j, sobald mehr daten vorliegen
+            targetDate = targetDate.minusYears(years);
 
 
             if (currentNumberSetDate.equals(targetDate)) {
@@ -64,9 +64,9 @@ public class KPICalc {
                 break;
             }
         }
-        float startwert = startNumberSet.getValues(i);
+        float startwert = startNumberSet.getValues(index);
         System.out.println("Der Startwert ist: " +  startwert);
-        float endwert = yearAgoNumberSet.getValues(i);
+        float endwert = yearAgoNumberSet.getValues(index);
         System.out.println("Der Endwert ist: " + endwert);
         float profitYoY = (startwert / endwert) - 1;
         System.out.println("Die Performance YoY ist: " + profitYoY * 100 + "%.");

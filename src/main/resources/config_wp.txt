@@ -1,0 +1,3 @@
+test=Testnachricht
+url=www.google.com
+YoY=1
