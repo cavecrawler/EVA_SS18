@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
         ConfigReader config = new ConfigReader();
-        String XLS_Filepath = "C:\\Users\\chrisso\\Documents\\JavaProjects\\src\\main\\resources\\ROhdaten.xlsx";
+        String XLS_Filepath = "C:\\Users\\Fabian\\Desktop\\Rohdaten_BI.xlsx";
         ExcelLoader excelLoader = new ExcelLoader(XLS_Filepath);
 
         Workbook workbook = excelLoader.getWorkbook(); //workbook holen
@@ -22,7 +22,7 @@ public class Main {
         System.out.println("Main: Job finished.");
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
-
+      
         for (int id = 1; id < 6; id++) {
             executor.submit(new Worker(id, 1, numberSetList));
         }
