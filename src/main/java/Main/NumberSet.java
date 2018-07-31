@@ -35,5 +35,9 @@ public class NumberSet {
         System.out.println("\nDas Datum dieses NumberSets ist: " + numberSetDate);
     }
 
+    public boolean checkArrayIntegrity() {
+        boolean check = numberSetValues.isEmpty();
+        return check;
+    }
 }
 

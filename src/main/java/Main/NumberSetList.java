@@ -18,4 +18,20 @@ public class NumberSetList {
         return numberSetList;
     }
 
+    public void checkNumberSetList() {
+        ArrayList<NumberSet> emptyNumberSets = new ArrayList<>();
+
+        //suche NumberSets die ein leeres Array haben
+        for (NumberSet currentNumberSet : numberSetList) {
+            boolean check = currentNumberSet.checkArrayIntegrity();
+            if (check){
+                emptyNumberSets.add(currentNumberSet);
+            }
+        }
+
+        //printDate aller leeren NumberSets
+        for (NumberSet currentNumberSet : emptyNumberSets) {
+            currentNumberSet.printDate();
+        }
+    }
 }

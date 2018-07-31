@@ -21,6 +21,9 @@ public class Main {
         NumberSetList numberSetList = workbookReader.getNumberSetList();     // numberSetList aus workbook lesen
         System.out.println("Main: Job finished.");
 
+        //Prüfmethode um NumberSetList auf leere Objekte zu prüfen
+        numberSetList.checkNumberSetList();
+
 
         ExecutorService executor = Executors.newFixedThreadPool(2);
       
@@ -30,8 +33,8 @@ public class Main {
         executor.shutdown();
 
 
-        KPICalc Calc = new KPICalc(numberSetList);
-        System.out.println(Calc.calculate_MaxDD());
+       // KPICalc Calc = new KPICalc(numberSetList);
+       // System.out.println(Calc.calculate_MaxDD());
 
     }
 }
