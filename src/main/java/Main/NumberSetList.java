@@ -19,19 +19,31 @@ public class NumberSetList {
     }
 
     public void checkNumberSetList() {
+        System.out.println("numberSetList: checking for empty NumberSets");
         ArrayList<NumberSet> emptyNumberSets = new ArrayList<>();
 
         //suche NumberSets die ein leeres Array haben
         for (NumberSet currentNumberSet : numberSetList) {
             boolean check = currentNumberSet.checkArrayIntegrity();
-            if (check){
+            if (check) {
                 emptyNumberSets.add(currentNumberSet);
             }
         }
 
         //printDate aller leeren NumberSets
+        int emptyNumberSetsCounter = 0;
         for (NumberSet currentNumberSet : emptyNumberSets) {
+
             currentNumberSet.printDate();
+            emptyNumberSetsCounter++;
+
+        }
+        if (emptyNumberSetsCounter == 0) {
+
+            System.out.println("numberSetList: No empty NumberSets found.");
+        } else {
+
+            System.out.println("numberSetList: found " + emptyNumberSetsCounter);
         }
     }
 }

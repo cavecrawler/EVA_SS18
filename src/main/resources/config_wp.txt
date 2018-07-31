@@ -1,4 +1,5 @@
 filepath=src/main/resources/Rohdaten.xlsx
-YoY1=true
-YoY2=true
-YoY3=true
+workbook=0
+YoY1=1
+YoY2=2
+YoY3=3

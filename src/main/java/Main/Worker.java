@@ -17,8 +17,8 @@ public class Worker implements Runnable {
     public void run() {
 
         System.out.println("Starting Thread: " + id);
-        KPICalc threadKpiCalc = new KPICalc(numberSetList);
-        threadKpiCalc.calculateYoYProfit("7/24/18", 1, indicator);
+        KPICalc calc = new KPICalc(numberSetList);
+        calc.calculateYoYProfit("7/24/18", 1, indicator);
         System.out.println("Closing Thread: " + id);
     }
 }

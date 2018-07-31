@@ -42,7 +42,7 @@ public class KPICalc {
     }
 
 
-    public Float calculateYoYProfit(String startDate, int index, int years) {
+    public Float calculateYoYProfit(String startDate, int index, int indicator) {
 
         DateConverter dateConverter = new DateConverter();
         NumberSet startNumberSet = new NumberSet();
@@ -55,7 +55,7 @@ public class KPICalc {
 
             if (currentNumberSetDate.equals(targetDate)) {
                 startNumberSet = currentNumberSet;
-                startNumberSetDate = startNumberSet.getDate();
+                startNumberSet.getDate();
                 break;
             }
         }
@@ -63,7 +63,7 @@ public class KPICalc {
         for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
             targetDate = startNumberSet.getDate();
-            targetDate = targetDate.minusYears(years);
+            targetDate = targetDate.minusYears(indicator);
 
 
             if (currentNumberSetDate.equals(targetDate)) {
