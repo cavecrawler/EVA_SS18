@@ -21,12 +21,19 @@ public class ConfigReader {
         }
     }
 
-    public int getSelectedIndicator() {
-        Integer i = Integer.valueOf(prop.getProperty("YoY"));
+    public int getIndicator(int indicator) {
+        String key = "YoY"+indicator;
+        Integer i = Integer.valueOf(prop.getProperty(key));
         return i;
     }
 
     public String getFilePath() {
         return prop.getProperty("filepath");
     }
+
+    public int getWorkbook() {
+        Integer workbook = Integer.valueOf(prop.getProperty("workbook"));
+        return workbook;
+    }
+
 }

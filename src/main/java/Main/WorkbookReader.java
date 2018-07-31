@@ -11,10 +11,11 @@ public class WorkbookReader {
     private Workbook currentWorkbook;
     private Sheet currentSheet;
 
-    public WorkbookReader(Workbook workbook, int i) {
+    public WorkbookReader(Workbook workbook, int sheetNumber) {
 
         currentWorkbook = workbook;
-        currentSheet = workbook.getSheetAt(i);
+        currentSheet = workbook.getSheetAt(sheetNumber);
+        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: "+sheetNumber);
     }
 
 
