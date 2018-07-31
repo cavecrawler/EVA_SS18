@@ -68,7 +68,11 @@ public class WorkbookReader {
                         counter++;
                     }
                 }
-                numberSetList.addNumberSet(currentNumberSet);
+                //Nur NumberSets mit Datum werden in die Liste geschrieben.
+                if (currentNumberSet.getDate()!= null) {
+
+                    numberSetList.addNumberSet(currentNumberSet);
+                }
             }
             rowCounter++;
         }
