@@ -9,6 +9,14 @@ public class KPICalc {
     private ArrayList<NumberSet> numberSetList;
     private LocalDate targetDate;
     private LocalDate currentNumberSetDate;
+    float value2;
+    float yield;
+    float vola;
+    float MaxDD;
+    float MaxDD_Final;
+    float max_wert;
+    
+    ArrayList<Float> YieldSetList= new ArrayList<>();
 
     public KPICalc(NumberSetList numberSetList) {
       
@@ -73,7 +81,84 @@ public class KPICalc {
         return profitYoY;
     }
 
+// neuer Commit FM
+    
+    
+    // Funktion die einen Array (FLOAT) für die Tagesrenditen einer Spalte ausgibt
+    
+	public  ArrayList<Float> caculate_daily_yield(){
+		 
+		for(NumberSet value: numberSetList) {
+			
+			 if(value2 != 0.0) {
+				 
+				 yield = (value.getValues(0) / value2) -1 ;
+				
+				 YieldSetList.add(yield);
+				
+			 }
+		
+			value2 = value.getValues(0);
+			
+								
+			}
+		
+		 return YieldSetList;
+		
+	}
+	
+	
+	
+	public float calculate_MaxDD(){
+		
+		MaxDD_Final = 0;
+		value2= 0;
+		
+		for(NumberSet value: numberSetList) {
+		
+			if (value2 != 0) {
+				
+			
+				if (value.getValues(0)>value2) {
+					
+					max_wert = value.getValues(0);
+					
+				}
+				
+				
+				MaxDD = (value.getValues(0)/max_wert)-1;
+			}
+			 	value2 = value.getValues(0); 
 
+			 	if (MaxDD_Final>MaxDD) {
+			 		
+			 			MaxDD_Final= MaxDD;
+			 			System.out.println(MaxDD_Final);
+			 	}
+			 	
+			 			 	 
+		}
+			return MaxDD;
+							
+			}
+		
+		
+
+	
+	// tatsächliche Vola Berechnung (tiefergehende Recherche notwendig)
+	
+	public float calculate_Vola() {
+		
+		
+	return vola;		
+}
+    
+    
+    
+    
+    
+    
+    
 //endofclass
 }
 
