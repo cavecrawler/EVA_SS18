@@ -33,8 +33,8 @@ public class Main {
         executor.shutdown();
 
 
-       // KPICalc Calc = new KPICalc(numberSetList);
-       // System.out.println(Calc.calculate_MaxDD());
+       KPICalc Calc = new KPICalc(numberSetList);
+       System.out.println(Calc.calculate_MaxDD());
 
     }
 }
