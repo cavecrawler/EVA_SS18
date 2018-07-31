@@ -25,4 +25,8 @@ public class ConfigReader {
         Integer i = Integer.valueOf(prop.getProperty("YoY"));
         return i;
     }
+
+    public String getFilePath() {
+        return prop.getProperty("filepath");
+    }
 }

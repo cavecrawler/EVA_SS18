@@ -1,3 +1,4 @@
-test=Testnachricht
-url=www.google.com
-YoY=1
+filepath=src/main/resources/Rohdaten.xlsx
+YoY1=true
+YoY2=true
+YoY3=true
