@@ -17,6 +17,7 @@ public class Main {
 
         Workbook workbook = excelLoader.getWorkbook(); //workbook holen
         WorkbookReader workbookReader = new WorkbookReader(workbook, config.getWorkbook());  //workbookReader starten
+        workbookReader.getValueNames();
         NumberSetList numberSetList = workbookReader.getNumberSetList();     // numberSetList aus workbook lesen
 
         //Prüfmethode um NumberSetList auf leere Objekte zu prüfen
