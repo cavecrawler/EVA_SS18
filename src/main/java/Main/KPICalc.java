@@ -14,7 +14,9 @@ public class KPICalc {
     float vola;
     float MaxDD;
     float MaxDD_Final;
-    float max_wert;
+	float value_test;
+    float value_max_test = 0;
+    
 
     ArrayList<Float> YieldSetList = new ArrayList<>();
 
@@ -108,37 +110,54 @@ public class KPICalc {
     }
 
 
-    public float calculate_MaxDD() {
-
+    public float calculate_MaxDD(String startDate ,int index,int indicator) {
+    	
+    	
         MaxDD_Final = 0;
         value2 = 0;
+    	DateConverter dateConverter = new DateConverter();
+    	targetDate = dateConverter.formatDate(startDate);
+    	targetDate = targetDate.minusYears(indicator);
+    	
 
+  
         for (NumberSet value : numberSetList) {
-
-            if (value2 != 0) {
-
-                if (value.getValues(0) > value2) {
-
-                    max_wert = value.getValues(0);
-                }
-
-                MaxDD = (value.getValues(0) / max_wert) - 1;
-            }
-            value2 = value.getValues(0);
-
-            if (MaxDD_Final > MaxDD) {
-
-                MaxDD_Final = MaxDD;
-                System.out.println(MaxDD_Final);
-            }
-
-        }
-        return MaxDD;
+        	
+        	
+        	currentNumberSetDate = value.getDate();
+        	
+        	
+        	if(currentNumberSetDate.compareTo(targetDate)>=0) {
+        	
+        	
+        	value_test= value.getValues(index);
+        	
+        	if (value_test>value_max_test) {
+        		
+        		value_max_test = value.getValues(index);
+        		
+        		
+        	}
+        	
+        	
+        	MaxDD = (value_test/value_max_test)-1;
+    
+        	if (MaxDD<MaxDD_Final) {
+        		;
+        		MaxDD_Final = MaxDD;
+        		
+        	}
+        	}
+        }  
+        System.out.println("Der Max Wert ist:"+ value_max_test);
+        System.out.println("Der Max DD ist:"+ MaxDD_Final);
+        System.out.println("Das Zieldatum ist" + targetDate);
+        return MaxDD_Final;
+        
     }
 
 
     // tatsächliche Vola Berechnung (tiefergehende Recherche notwendig)
-
     public float calculate_Vola() {
 
 
@@ -148,4 +167,3 @@ public class KPICalc {
 
 //endofclass
 }
-
