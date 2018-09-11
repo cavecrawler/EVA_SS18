@@ -1,9 +1,6 @@
 package Main;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -20,16 +17,18 @@ public class Main {
         NumberSetList numberSetList = workbookReader.getNumberSetList();     // numberSetList aus workbook lesen
 
         //Prüfmethode um NumberSetList auf leere Objekte zu prüfen
-        numberSetList.checkNumberSetList();
+        numberSetList.checkNumberSetListForEmptyNumberSets();
 
-        //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
+        // TODO: Mapper Starten
+        // workbookReader.getValueNames();     // Testmethodenaufruf um 1. Zeile mit Indize-Namen zu erhalten
+
+      //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
         TaskMaster taskMaster = new TaskMaster(numberSetList, config);
         taskMaster.startThreads();
 
-        
-       // Testaufrufe Build_Finanzkennzahlen_FM 
-       KPICalc Calc = new KPICalc(numberSetList);
-       System.out.println(Calc.calculate_MaxDD("7/24/18",0,1));
+
+
+
 
     }
 }

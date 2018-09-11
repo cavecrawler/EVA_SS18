@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 
 public class DateConverter {
 
+    // Aus String Eingaben des Workbook-Readers werden LocalDate Objects erzeugt.
     public LocalDate formatDate(String cellValue) throws DateTimeException {
 
         try {

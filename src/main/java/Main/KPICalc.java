@@ -9,14 +9,14 @@ public class KPICalc {
     private ArrayList<NumberSet> numberSetList;
     private LocalDate targetDate;
     private LocalDate currentNumberSetDate;
-    float value2;
-    float yield;
-    float vola;
-    float MaxDD;
-    float MaxDD_Final;
-	float value_test;
-    float value_max_test = 0;
-    
+    private float value2;
+    private float yield;
+    private float vola;
+    private float MaxDD;
+    private float MaxDD_Final;
+    private float value_test;
+    private float value_max_test = 0;
+    private int workerID;
 
     ArrayList<Float> YieldSetList = new ArrayList<>();
 
@@ -25,6 +25,7 @@ public class KPICalc {
         this.numberSetList = numberSetList.getNumberSetList();
     }
 
+    // NumberSet nach TargetDate zurückgeben
     public NumberSet getTargetDate(String startDate) {
         DateConverter dateConverter = new DateConverter();
         NumberSet targetNumberSet = new NumberSet();
@@ -44,43 +45,47 @@ public class KPICalc {
     }
 
 
-    public Float calculateYoYProfit(String startDate, int index, int indicator) {
+    public Float calculateYoYProfit(int workerID, LocalDate targetDate, int bondIndex, int indicator) {
 
-        DateConverter dateConverter = new DateConverter();
         NumberSet startNumberSet = new NumberSet();
-        NumberSet yearAgoNumberSet = new NumberSet();
+        NumberSet yearsAgoNumberSet = new NumberSet();
         LocalDate startNumberSetDate;
-        targetDate = dateConverter.formatDate(startDate);
+        this.targetDate = targetDate;
+        this.workerID = workerID;
 
-        for (NumberSet currentNumberSet : numberSetList) { //
-            currentNumberSetDate = currentNumberSet.getDate();
 
-            if (currentNumberSetDate.equals(targetDate)) {
-                startNumberSet = currentNumberSet;
-                startNumberSet.getDate();
-                break;
+            for (NumberSet currentNumberSet : numberSetList) { //
+                currentNumberSetDate = currentNumberSet.getDate();
+
+                if (currentNumberSetDate.equals(targetDate)) {
+                    startNumberSet = currentNumberSet;
+                    startNumberSet.getDate();
+                    break;
+                }
             }
-        }
 
-        for (NumberSet currentNumberSet : numberSetList) {
-            currentNumberSetDate = currentNumberSet.getDate();
-            targetDate = startNumberSet.getDate();
-            targetDate = targetDate.minusYears(indicator);
+            for (NumberSet currentNumberSet : numberSetList) {
+                currentNumberSetDate = currentNumberSet.getDate();
+                targetDate = startNumberSet.getDate();
+                targetDate = targetDate.minusYears(indicator);
 
 
-            if (currentNumberSetDate.equals(targetDate)) {
-                yearAgoNumberSet = currentNumberSet;
-                System.out.println("Das targetDate ist: " + targetDate);
-                break;
+                if (currentNumberSetDate.equals(targetDate)) {
+                    yearsAgoNumberSet = currentNumberSet;
+                    System.out.println("Worker " + workerID + ": YOY: Das targetDate ist: " + targetDate);
+                    break;
+                }
             }
-        }
-        float startwert = startNumberSet.getValues(index);
-        System.out.println("Der Startwert ist: " + startwert);
-        float endwert = yearAgoNumberSet.getValues(index);
-        System.out.println("Der Endwert ist: " + endwert);
-        float profitYoY = (startwert / endwert) - 1;
-        System.out.println("Die Performance YoY ist: " + profitYoY * 100 + "%.");
-        return profitYoY;
+            float startwert = startNumberSet.getValues(bondIndex);
+            System.out.println("Worker " + workerID + ": YOY: Der Startwert ist: " + startwert);
+            float endwert = yearsAgoNumberSet.getValues(bondIndex);
+            System.out.println("Worker " + workerID + ": YOY: Der Endwert ist: " + endwert);
+            float profitYoY = (startwert / endwert) - 1;
+            // TODO: Ausgabe auf 3 Stellen nach dem Komma begrenzen
+            System.out.println("Worker " + workerID + ": YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
+            return profitYoY;
+
+
     }
 
 // neuer Commit FM
@@ -93,67 +98,49 @@ public class KPICalc {
         for (NumberSet value : numberSetList) {
 
             if (value2 != 0.0) {
-
                 yield = (value.getValues(0) / value2) - 1;
-
                 YieldSetList.add(yield);
-
             }
 
             value2 = value.getValues(0);
-
-
         }
 
         return YieldSetList;
-
     }
 
 
-    public float calculate_MaxDD(String startDate ,int index,int indicator) {
-    	
-    	
+    public float calculate_MaxDD(int workerID, LocalDate startDate, int bondIndex, int indicator) {
+
+        this.workerID = workerID;
         MaxDD_Final = 0;
         value2 = 0;
-    	DateConverter dateConverter = new DateConverter();
-    	targetDate = dateConverter.formatDate(startDate);
-    	targetDate = targetDate.minusYears(indicator);
-    	
+        targetDate = startDate;
+        targetDate = targetDate.minusYears(indicator);
 
-  
         for (NumberSet value : numberSetList) {
-        	
-        	
-        	currentNumberSetDate = value.getDate();
-        	
-        	
-        	if(currentNumberSetDate.compareTo(targetDate)>=0) {
-        	
-        	
-        	value_test= value.getValues(index);
-        	
-        	if (value_test>value_max_test) {
-        		
-        		value_max_test = value.getValues(index);
-        		
-        		
-        	}
-        	
-        	
-        	MaxDD = (value_test/value_max_test)-1;
-    
-        	if (MaxDD<MaxDD_Final) {
-        		;
-        		MaxDD_Final = MaxDD;
-        		
-        	}
-        	}
-        }  
-        System.out.println("Der Max Wert ist:"+ value_max_test);
-        System.out.println("Der Max DD ist:"+ MaxDD_Final);
-        System.out.println("Das Zieldatum ist" + targetDate);
+
+            currentNumberSetDate = value.getDate();
+
+            if (currentNumberSetDate.compareTo(targetDate) >= 0) {
+                value_test = value.getValues(bondIndex);
+
+                if (value_test > value_max_test) {
+                    value_max_test = value.getValues(bondIndex);
+                }
+
+                MaxDD = (value_test / value_max_test) - 1;
+
+                if (MaxDD < MaxDD_Final) {
+                    MaxDD_Final = MaxDD;
+                }
+            }
+        }
+
+        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + targetDate);
+        System.out.println("Worker " + workerID + ": MAX: Der Max Wert ist: " + value_max_test);
+        System.out.println("Worker " + workerID + ": MAX: Der Max DD ist: " + MaxDD_Final);
+
         return MaxDD_Final;
-        
     }
 
 

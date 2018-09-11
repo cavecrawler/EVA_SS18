@@ -11,13 +11,38 @@ public class WorkbookReader {
     private Workbook currentWorkbook;
     private Sheet currentSheet;
 
+
     public WorkbookReader(Workbook workbook, int sheetNumber) {
 
         currentWorkbook = workbook;
         currentSheet = workbook.getSheetAt(sheetNumber);
-        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: "+sheetNumber);
+        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: " + sheetNumber);
     }
 
+    public ArrayList<String> getValueNames() {
+
+        ArrayList<String> valueNames = new ArrayList<>();
+        DataFormatter dataFormatter = new DataFormatter();
+        Iterator<Row> rowIterator = currentSheet.rowIterator();
+        Row currentRow = rowIterator.next();
+        Iterator<Cell> cellIterator = currentRow.cellIterator();
+        int cellCounter = 0;
+
+        while (cellIterator.hasNext()) {
+
+            Cell currentCell = cellIterator.next();
+            String valueName = dataFormatter.formatCellValue(currentCell);
+
+            if (cellCounter != 0 && valueName != "") {
+
+                valueNames.add(valueName);
+                System.out.println(valueName);
+            }
+
+            cellCounter++;
+        }
+        return valueNames;
+    }
 
     public NumberSetList getNumberSetList() {
 
@@ -30,7 +55,6 @@ public class WorkbookReader {
         while (rowIterator.hasNext()) {
 
             Row currentRow = rowIterator.next();
-
             if (rowCounter != 0) {
                 NumberSet currentNumberSet = new NumberSet();
                 Iterator<Cell> cellIterator = currentRow.cellIterator();
@@ -40,8 +64,8 @@ public class WorkbookReader {
                     Cell currentCell = cellIterator.next();
                     String cellValue = dataFormatter.formatCellValue(currentCell);
 
+                    //Die erste Zelle mit Datum wird in das NumberSet geschrieben.
                     if (cellValue != "" && counter == 0) {
-                        //Die erste Zelle mit Datum wird in das NumberSet geschrieben.
                         LocalDate localDate = dateConverter.formatDate(cellValue);
                         currentNumberSet.setDate(localDate);
 
@@ -70,7 +94,7 @@ public class WorkbookReader {
                     }
                 }
                 //Nur NumberSets mit Datum werden in die Liste geschrieben.
-                if (currentNumberSet.getDate()!= null) {
+                if (currentNumberSet.getDate() != null) {
 
                     numberSetList.addNumberSet(currentNumberSet);
                 }
