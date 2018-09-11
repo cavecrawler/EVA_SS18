@@ -8,6 +8,7 @@ public class TaskMaster {
     private NumberSetList numberSetList;
     private ConfigReader config;
 
+
     public TaskMaster(NumberSetList numberSetList, ConfigReader config) {
 
         this.numberSetList = numberSetList;
@@ -22,10 +23,10 @@ public class TaskMaster {
         for (int id = 1; id < 6; id++) {
 
 
-            executor.submit(new Worker(id, config.getIndicator(1), numberSetList));
+            executor.submit(new Worker(id, config.getYearOverYearIndicator(1), numberSetList));
         }
+
         executor.shutdown();
-
-
     }
+    
 }

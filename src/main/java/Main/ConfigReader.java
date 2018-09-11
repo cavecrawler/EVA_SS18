@@ -21,16 +21,19 @@ public class ConfigReader {
         }
     }
 
-    public int getIndicator(int indicator) {
-        String key = "YoY"+indicator;
+    // Auslesen der Year-over-Year Jahre Berechnung aus Config
+    public int getYearOverYearIndicator(int yearOverYearIndicator) {
+        String key = "YoY"+yearOverYearIndicator;
         Integer i = Integer.valueOf(prop.getProperty(key));
         return i;
     }
 
+    // dynamischer Filepath für die Quelldatei
     public String getFilePath() {
         return prop.getProperty("filepath");
     }
 
+    // bestimmt das Workbook anhand der Arbeitsblatt-Nummer aus der Config
     public int getWorkbook() {
         Integer workbook = Integer.valueOf(prop.getProperty("workbook"));
         return workbook;

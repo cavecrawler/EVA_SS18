@@ -18,11 +18,11 @@ public class NumberSetList {
         return numberSetList;
     }
 
-    public void checkNumberSetList() {
+    //suche NumberSets die ein leeres FloatArray haben
+    public void checkNumberSetListForEmptyNumberSets() {
         System.out.println("numberSetList: checking for empty NumberSets");
         ArrayList<NumberSet> emptyNumberSets = new ArrayList<>();
 
-        //suche NumberSets die ein leeres Array haben
         for (NumberSet currentNumberSet : numberSetList) {
             boolean check = currentNumberSet.checkArrayIntegrity();
             if (check) {
@@ -45,5 +45,11 @@ public class NumberSetList {
 
             System.out.println("numberSetList: found " + emptyNumberSetsCounter);
         }
+    }
+
+    public NumberSet getLastNumberSet() {
+        int lastIndex = numberSetList.size();
+        NumberSet currentNumberSet = numberSetList.get(lastIndex -1);
+        return currentNumberSet;
     }
 }
