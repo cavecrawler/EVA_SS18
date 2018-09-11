@@ -26,10 +26,10 @@ public class Main {
         TaskMaster taskMaster = new TaskMaster(numberSetList, config);
         taskMaster.startThreads();
 
-
-
-       // KPICalc Calc = new KPICalc(numberSetList);
-       // System.out.println(Calc.calculate_MaxDD());
+        
+       // Testaufrufe Build_Finanzkennzahlen_FM 
+       KPICalc Calc = new KPICalc(numberSetList);
+       System.out.println(Calc.calculate_MaxDD("7/24/18",0,1));
 
     }
 }
