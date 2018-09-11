@@ -14,21 +14,18 @@ public class Main {
 
         Workbook workbook = excelLoader.getWorkbook(); //workbook holen
         WorkbookReader workbookReader = new WorkbookReader(workbook, config.getWorkbook());  //workbookReader starten
-        workbookReader.getValueNames();
         NumberSetList numberSetList = workbookReader.getNumberSetList();     // numberSetList aus workbook lesen
 
         //Prüfmethode um NumberSetList auf leere Objekte zu prüfen
         numberSetList.checkNumberSetListForEmptyNumberSets();
 
         // TODO: Mapper Starten
-        // workbookReader.getValueNames();     // Testmethodenaufruf um 1. Zeile mit Indize-Namen zu erhalten
+        Mapper map = new Mapper(workbookReader.getValueNames());     // Testmethodenaufruf um 1. Zeile mit Indize-Namen zu erhalten
 
-      //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
+
+        //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
         TaskMaster taskMaster = new TaskMaster(numberSetList, config);
         taskMaster.startThreads();
-
-
-
 
 
     }

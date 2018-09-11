@@ -24,7 +24,14 @@ public class ConfigReader {
     // Auslesen der Year-over-Year Jahre Berechnung aus Config
     public int getYearOverYearIndicator(int yearOverYearIndicator) {
         String key = "YoY"+yearOverYearIndicator;
-        Integer i = Integer.valueOf(prop.getProperty(key));
+        Integer i;
+        try {
+            i = Integer.valueOf(prop.getProperty(key));
+        } catch (NumberFormatException e) {
+            i = 0;
+            System.out.println("configReader: Fehlerhafter YoY Index: "+yearOverYearIndicator);
+        }
+
         return i;
     }
 

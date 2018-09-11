@@ -2,6 +2,7 @@ package Main;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class TaskMaster {
 
@@ -22,11 +23,12 @@ public class TaskMaster {
 
         for (int id = 1; id < 6; id++) {
 
+            int yearOverYearIndicator = config.getYearOverYearIndicator(id);
+            executor.submit(new Worker(id, yearOverYearIndicator, numberSetList));
 
-            executor.submit(new Worker(id, config.getYearOverYearIndicator(1), numberSetList));
         }
-
         executor.shutdown();
+        executor.shutdownNow();
     }
-    
+
 }

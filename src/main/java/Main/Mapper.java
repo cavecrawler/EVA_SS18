@@ -11,5 +11,8 @@ public class Mapper {
         this.valueNames = valueNames;
     }
 
+    public void createBondIndexList() {
+
+    }
 
 }

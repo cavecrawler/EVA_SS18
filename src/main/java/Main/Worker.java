@@ -27,7 +27,7 @@ public class Worker implements Runnable {
 
         KPICalc calc = new KPICalc(numberSetList);
         // TODO: Bondindex dynamisch gestalten.
-        calc.calculateYoYProfit(workerID,targetDate, 0, indicator);
+        calc.calculateYoYProfit(workerID, targetDate, 0, indicator);
         calc.calculate_MaxDD(workerID, targetDate, 0, indicator);
 
         System.out.println("Worker " + workerID + ": Closing");

@@ -36,7 +36,7 @@ public class WorkbookReader {
             if (cellCounter != 0 && valueName != "") {
 
                 valueNames.add(valueName);
-                System.out.println(valueName);
+                System.out.println("WorkbookReader: " + valueName);
             }
 
             cellCounter++;
