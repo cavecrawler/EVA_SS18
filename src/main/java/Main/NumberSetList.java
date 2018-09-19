@@ -10,6 +10,8 @@ public class NumberSetList {
         this.numberSetList.add(numberSet);
     }
 
+    // Rückgabe eines Numbersets anhand des Index
+    // TODO Methode um Indexposition anhand des Datums zu erhalten
     public NumberSet getNumberSet(int index) {
         return numberSetList.get(index);
     }

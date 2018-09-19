@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<configuration>
+    <filepaths>
+        <datasource>
+            src/main/resources/Rohdaten.xlsx
+        </datasource>
+    </filepaths>
+
+    <processing stage="qa">
+        <sheets>
+            <sheet>0</sheet>
+            <sheet>1</sheet>
+        </sheets>
+        <yoy_indicators>
+            <yoy>1</yoy>
+            <yoy>2</yoy>
+            <yoy>3</yoy>
+        </yoy_indicators>
+        <maxdd_indicators>
+            <maxdd>1</maxdd>
+            <maxdd>2</maxdd>
+            <maxdd>3</maxdd>
+        </maxdd_indicators>
+    </processing>
+</configuration>

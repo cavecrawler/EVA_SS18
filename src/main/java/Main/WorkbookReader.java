@@ -10,19 +10,24 @@ public class WorkbookReader {
 
     private Workbook currentWorkbook;
     private Sheet currentSheet;
+    private int[] sheetNumbers;
 
-
-    public WorkbookReader(Workbook workbook, int sheetNumber) {
+    public WorkbookReader(Workbook workbook, int[] sheetNumbers) {
 
         currentWorkbook = workbook;
-        currentSheet = workbook.getSheetAt(sheetNumber);
-        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: " + sheetNumber);
+        this.sheetNumbers = sheetNumbers;
+
+
+        ;
     }
 
-    public ArrayList<String> getValueNames() {
+    public ArrayList<String> getValueNames(int sheetNumber) {
 
         ArrayList<String> valueNames = new ArrayList<>();
         DataFormatter dataFormatter = new DataFormatter();
+        currentSheet = currentWorkbook.getSheetAt(sheetNumber); // sheetNumber Parameter legt sheet des workbooks fest
+        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: " +
+                currentWorkbook.getSheetName(sheetNumber));
         Iterator<Row> rowIterator = currentSheet.rowIterator();
         Row currentRow = rowIterator.next();
         Iterator<Cell> cellIterator = currentRow.cellIterator();
@@ -44,11 +49,12 @@ public class WorkbookReader {
         return valueNames;
     }
 
-    public NumberSetList getNumberSetList() {
+    public NumberSetList getNumberSetList(int sheetNumber) {
 
         DataFormatter dataFormatter = new DataFormatter();
         DateConverter dateConverter = new DateConverter();
         NumberSetList numberSetList = new NumberSetList();
+        currentSheet = currentWorkbook.getSheetAt(sheetNumber);
         Iterator<Row> rowIterator = currentSheet.rowIterator();
 
         int rowCounter = 0;

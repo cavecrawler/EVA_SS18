@@ -25,7 +25,7 @@ public class KPICalc {
         this.numberSetList = numberSetList.getNumberSetList();
     }
 
-    // NumberSet nach TargetDate zurückgeben
+    // NumberSet nach TargetDate zurÃ¼ckgeben
     public NumberSet getTargetDate(String startDate) {
         DateConverter dateConverter = new DateConverter();
         NumberSet targetNumberSet = new NumberSet();
@@ -91,7 +91,7 @@ public class KPICalc {
 // neuer Commit FM
 
 
-    // Funktion die einen Array (FLOAT) für die Tagesrenditen einer Spalte ausgibt
+    // Funktion die einen Array (FLOAT) fÃ¼r die Tagesrenditen einer Spalte ausgibt
 
     public ArrayList<Float> caculate_daily_yield() {
 
@@ -107,7 +107,6 @@ public class KPICalc {
 
         return YieldSetList;
     }
-
 
     public float calculate_MaxDD(int workerID, LocalDate startDate, int bondIndex, int indicator) {
 
@@ -144,13 +143,9 @@ public class KPICalc {
     }
 
 
-    // tatsächliche Vola Berechnung (tiefergehende Recherche notwendig)
     public float calculate_Vola() {
-
-
         return vola;
     }
 
+}//endofclass
 
-//endofclass
-}
