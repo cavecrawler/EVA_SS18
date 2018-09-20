@@ -7,8 +7,9 @@ import java.util.ArrayList;
 public class KPICalc {
 
     private ArrayList<NumberSet> numberSetList;
-    private LocalDate targetDate;
+    private LocalDate baseDate;
     private LocalDate currentNumberSetDate;
+    private int timeIndicator;
     private float value2;
     private float yield;
     private float vola;
@@ -29,12 +30,12 @@ public class KPICalc {
     public NumberSet getTargetDate(String startDate) {
         DateConverter dateConverter = new DateConverter();
         NumberSet targetNumberSet = new NumberSet();
-        targetDate = dateConverter.formatDate(startDate);
+        baseDate = dateConverter.formatDate(startDate);
 
         for (NumberSet currentNumberSet : numberSetList) {
             currentNumberSetDate = currentNumberSet.getDate();
 
-            if (currentNumberSetDate.equals(targetDate)) {
+            if (currentNumberSetDate.equals(baseDate)) {
                 System.out.println("Das Zieldatum ist: " + currentNumberSetDate);
                 targetNumberSet = currentNumberSet;
                 break;
@@ -45,47 +46,45 @@ public class KPICalc {
     }
 
 
-    public Float calculateYoYProfit(int workerID, LocalDate targetDate, int bondIndex, int indicator) {
+    public float calculateYoYProfit(int workerID, LocalDate targetDate, int bondIndex, int timeIndicator) {
 
-        NumberSet startNumberSet = new NumberSet();
-        NumberSet yearsAgoNumberSet = new NumberSet();
-        LocalDate startNumberSetDate;
-        this.targetDate = targetDate;
+        NumberSet baseNumberSet = new NumberSet();
+        NumberSet yoyNumberSet = new NumberSet();
+        this.baseDate = targetDate;
         this.workerID = workerID;
+        this.timeIndicator = timeIndicator;
 
+        for (NumberSet currentNumberSet : numberSetList) {
+            currentNumberSetDate = currentNumberSet.getDate(); // Datum des aktuellen Numbersets speichern
 
-            for (NumberSet currentNumberSet : numberSetList) { //
-                currentNumberSetDate = currentNumberSet.getDate();
-
-                if (currentNumberSetDate.equals(targetDate)) {
-                    startNumberSet = currentNumberSet;
-                    startNumberSet.getDate();
-                    break;
-                }
+            if (currentNumberSetDate.equals(targetDate)) { // jedes NumberSet wird mit Zieldatum verglichen
+                baseNumberSet = currentNumberSet; // bei erfolg wird das aktuelle NumberSet zum StartNumberSet
+                break;
             }
+        }
 
-            for (NumberSet currentNumberSet : numberSetList) {
+        targetDate = baseNumberSet.getDate().minusYears(timeIndicator); // yoy Datum bestimmen
+
+        if (targetDate.isAfter(lastPossibleCalculationDate())) { // Sicherung, dass yoyDate > LPC Date
+            for (NumberSet currentNumberSet : numberSetList) { // NumberSet mit yoyDatum finden
                 currentNumberSetDate = currentNumberSet.getDate();
-                targetDate = startNumberSet.getDate();
-                targetDate = targetDate.minusYears(indicator);
-
 
                 if (currentNumberSetDate.equals(targetDate)) {
-                    yearsAgoNumberSet = currentNumberSet;
+                    yoyNumberSet = currentNumberSet;
                     System.out.println("Worker " + workerID + ": YOY: Das targetDate ist: " + targetDate);
                     break;
                 }
             }
-            float startwert = startNumberSet.getValues(bondIndex);
-            System.out.println("Worker " + workerID + ": YOY: Der Startwert ist: " + startwert);
-            float endwert = yearsAgoNumberSet.getValues(bondIndex);
-            System.out.println("Worker " + workerID + ": YOY: Der Endwert ist: " + endwert);
-            float profitYoY = (startwert / endwert) - 1;
-            // TODO: Ausgabe auf 3 Stellen nach dem Komma begrenzen
-            System.out.println("Worker " + workerID + ": YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
-            return profitYoY;
+        }
 
-
+        float startwert = baseNumberSet.getValues(bondIndex);
+        System.out.println("Worker " + workerID + ": YOY: Der Startwert ist: " + startwert);
+        float endwert = yoyNumberSet.getValues(bondIndex);
+        System.out.println("Worker " + workerID + ": YOY: Der Endwert ist: " + endwert);
+        float profitYoY = (startwert / endwert) - 1;
+        // TODO: Ausgabe auf 3 Stellen nach dem Komma begrenzen
+        System.out.println("Worker " + workerID + ": YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
+        return profitYoY;
     }
 
 // neuer Commit FM
@@ -108,19 +107,19 @@ public class KPICalc {
         return YieldSetList;
     }
 
-    public float calculate_MaxDD(int workerID, LocalDate startDate, int bondIndex, int indicator) {
+    public float calculate_MaxDD(int workerID, LocalDate baseDate, int bondIndex, int timeIndicator) {
 
         this.workerID = workerID;
         MaxDD_Final = 0;
         value2 = 0;
-        targetDate = startDate;
-        targetDate = targetDate.minusYears(indicator);
+        this.baseDate = baseDate;
+        this.baseDate = this.baseDate.minusYears(timeIndicator);
 
         for (NumberSet value : numberSetList) {
 
             currentNumberSetDate = value.getDate();
 
-            if (currentNumberSetDate.compareTo(targetDate) >= 0) {
+            if (currentNumberSetDate.compareTo(this.baseDate) >= 0) {
                 value_test = value.getValues(bondIndex);
 
                 if (value_test > value_max_test) {
@@ -135,7 +134,7 @@ public class KPICalc {
             }
         }
 
-        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + targetDate);
+        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + this.baseDate);
         System.out.println("Worker " + workerID + ": MAX: Der Max Wert ist: " + value_max_test);
         System.out.println("Worker " + workerID + ": MAX: Der Max DD ist: " + MaxDD_Final);
 
@@ -143,8 +142,15 @@ public class KPICalc {
     }
 
 
-    public float calculate_Vola() {
-        return vola;
+//    public float calculate_Vola() {
+//        return vola;
+//    }
+
+    private LocalDate lastPossibleCalculationDate() {
+
+        // erstes datum + time indicator = letztes mögliches berechnungsdatum
+        LocalDate lastPossibleCalcDate = numberSetList.get(0).getDate().plusYears(timeIndicator);
+        return lastPossibleCalcDate;
     }
 
 }//endofclass

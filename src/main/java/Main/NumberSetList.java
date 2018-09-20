@@ -54,4 +54,8 @@ public class NumberSetList {
         NumberSet currentNumberSet = numberSetList.get(lastIndex -1);
         return currentNumberSet;
     }
+
+    public NumberSet getFirstNumberSet() {
+        return numberSetList.get(0);
+    }
 }
