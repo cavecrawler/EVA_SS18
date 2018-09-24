@@ -3,6 +3,8 @@ package Main;
 import org.apache.commons.configuration2.XMLConfiguration;
 import org.apache.commons.configuration2.builder.fluent.Configurations;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -39,5 +41,14 @@ public class XMLConfig {
         int[] sheets = config.get(int[].class,"processing.sheets.sheet");
         return sheets;
     }
+
+    public ArrayList<Calculation> getCalculations() {
+
+        ArrayList<Calculation> calculations = config.ge
+
+
+    }
+
+    public
 
 }
