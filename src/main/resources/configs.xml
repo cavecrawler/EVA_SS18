@@ -1,39 +1,73 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <configuration>
 
-    <datasource>
+    <filepath>
         src/main/resources/Rohdaten.xlsx
-    </datasource>
+    </filepath>
+
+    <sheets>
+        0
+    </sheets>
+
+    <!-- ConfigDocumentation:
+
+    Unterstützte Bond Indices
+
+    DAX 30 PERFORMANCE - TOT RETURN IND
+    FTSE 100 - TOT RETURN IND
+    FRANCE CAC 40 - TOT RETURN IND
+    HANG SENG - TOT RETURN IND
+    BRAZIL BOVESPA - TOT RETURN IND
+    S&P/TSX COMPOSITE INDEX - TOT RETURN IND
+    -->
 
     <calculations>
-        <calculation type="yoy">
-            <yoy year="1">
+        <calculation type="yoy" year="1">
+            <indices>
                 <bondIndex>
-                    DAX, CAC,
+                    FRANCE CAC 40 - TOT RETURN IND
                 </bondIndex>
-            </yoy>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    HANG SENG - TOT RETURN IND
+                </bondIndex>
+            </indices>
         </calculation>
 
-        <calculation type="maxdd">
-            <yoy year="1">
+        <calculation type="maxdd" year ="1">
+            <indices>
                 <bondIndex>
-                    DAX, CAC,
+                    HANG SENG - TOT RETURN IND
                 </bondIndex>
-            </yoy>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="3">
+            <indices>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="2">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
         </calculation>
     </calculations>
 
-    <processing>
-        <yoy_indicators>
-            <yoy>1</yoy>
-            <yoy>2</yoy>
-            <yoy>3</yoy>
-        </yoy_indicators>
-
-        <maxdd_indicators>
-            <maxdd>1</maxdd>
-            <maxdd>2</maxdd>
-            <maxdd>3</maxdd>
-        </maxdd_indicators>
-    </processing>
 </configuration>

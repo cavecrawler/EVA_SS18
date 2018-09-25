@@ -2,80 +2,64 @@ package Main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class MaxDDCalculator implements ICalculator {
 
     private Calculation calculation;
-    private ArrayList<NumberSet> numberSetList;
+    private ArrayList<NumberSet> numberSets;
+
 
     private LocalDate currentNumberSetDate;
-    private LocalDate baseDate;
-    private LocalDate targetDate;
-    private NumberSet currentNumberSet;
 
-    private int workerID;
-    private int bondIndex;
-    private int timeIndicator;
-
-    private float value2;
-    private float yield;
-    private float vola;
 
     private float MaxDD;
-    private float MaxDD_Final;
     private float value_test;
     private float value_max_test = 0;
 
 
     public MaxDDCalculator(Calculation calculation, NumberSetList numberSetList) {
         this.calculation = calculation;
-        this.numberSetList = numberSetList;
+        this.numberSets = numberSetList.getNumberSetList();
     }
 
     @Override
     public ResultObject calculate() {
 
+        List<String> indices = calculation.getIndices();
+        Map<String, Integer> map = numberSets.get(0).getIndices();
+        NumberSet baseNumberSet = numberSets.get(numberSets.size() - 1); // letztes Datum holen
+        LocalDate baseDate = baseNumberSet.getDate();
+        ResultObject resultObject = new ResultObject();
+        float MaxDD_Final = 0;
+        for (String indexName : indices) {
+            int bondIndex = map.get(indexName);
 
-        // get Variables out of Calculation
+            for (NumberSet value : numberSets) {
 
-        this.workerID = workerID;
-        MaxDD_Final = 0;
-        value2 = 0;
-        this.baseDate = baseDate;
-        this.baseDate = this.baseDate.minusYears(timeIndicator);
+                currentNumberSetDate = value.getDate();
 
-        for (NumberSet value : numberSetList) {
+                if (currentNumberSetDate.compareTo(baseDate) >= 0) {
+                    value_test = value.getValues(bondIndex);
 
-            currentNumberSetDate = value.getDate();
+                    if (value_test > value_max_test) {
+                        value_max_test = value.getValues(bondIndex);
+                    }
 
-            if (currentNumberSetDate.compareTo(this.baseDate) >= 0) {
-                value_test = value.getValues(bondIndex);
+                    MaxDD = (value_test / value_max_test) - 1;
 
-                if (value_test > value_max_test) {
-                    value_max_test = value.getValues(bondIndex);
-                }
-
-                MaxDD = (value_test / value_max_test) - 1;
-
-                if (MaxDD < MaxDD_Final) {
-                    MaxDD_Final = MaxDD;
+                    if (MaxDD < MaxDD_Final) {
+                        MaxDD_Final = MaxDD;
+                    }
                 }
             }
+//        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + this.baseDate);
+//        System.out.println("Worker " + workerID + ": MAX: Der Max Wert ist: " + value_max_test);
+//        System.out.println("Worker " + workerID + ": MAX: Der Max DD ist: " + MaxDD_Final);
+            resultObject.putResults(indexName, MaxDD_Final);
         }
-
-        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + this.baseDate);
-        System.out.println("Worker " + workerID + ": MAX: Der Max Wert ist: " + value_max_test);
-        System.out.println("Worker " + workerID + ": MAX: Der Max DD ist: " + MaxDD_Final);
-
-        return MaxDD_Final;
-    }
-
-    private LocalDate lastPossibleCalculationDate() {
-
-        // erstes datum + time indicator = letztes mögliches berechnungsdatum
-        LocalDate lastPossibleCalcDate = numberSetList.get(0).getDate().plusYears(timeIndicator);
-        numberSetList.
-        return lastPossibleCalcDate;
+        return resultObject;
     }
 }
 

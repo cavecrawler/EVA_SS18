@@ -2,74 +2,73 @@ package Main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class YoYCalculator implements ICalculator {
 
     private Calculation calculation;
-    private ArrayList<NumberSet> numberSetList;
-    private LocalDate currentNumberSetDate;
-    private LocalDate targetDate;
-    private LocalDate baseDate;
+    private NumberSetList numberSetList;
+    private ArrayList<NumberSet> numberSets;
+    private LocalDate baseNumberSetDate;
     private int timeIndicator;
-    private int workerID;
-    private int bondIndex;
     private NumberSet currentNumberSet;
+
 
 
     public YoYCalculator(Calculation calculation, NumberSetList numberSetList) {
         this.calculation = calculation;
         this.numberSetList = numberSetList;
-        ResultObject results = new ResultObject();
     }
 
     @Override
     public ResultObject calculate() {
 
-        // LocalDate targetDate aus Calculation auslesen
-        // int bondIndex aus Calculation lesen
+        numberSets = numberSetList.getNumberSetList();
+        // TODO LocalDate targetDate aus Calculation auslesen
+        // int bondIndizes aus Calculation lesen
+        List<String> indices = calculation.getIndices();
         // int timeIndicator aus Calculation lesen
+        timeIndicator = calculation.getTimeIndicator();
+        Map<String, Integer> map = numberSets.get(0).getIndices();  // Indices aus erstem NumberSet lesen
+        ResultObject results = new ResultObject();
+        for (String indexName : indices) {
+            int bondIndex = map.get(indexName);
+            NumberSet baseNumberSet = numberSets.get(numberSets.size() - 1); // letztes Datum holen
+            NumberSet yoyNumberSet = new NumberSet();
+            baseNumberSetDate = baseNumberSet.getDate();
 
-        NumberSet baseNumberSet = new NumberSet();
-        NumberSet yoyNumberSet = new NumberSet();
-        this.baseDate = targetDate;
-        this.workerID = workerID;
-        this.timeIndicator = timeIndicator;
+            // ist das benötigte Zieldatum in der Setlist vorhanden?
+            if (baseNumberSetDate.minusYears(timeIndicator).isAfter(lastPossibleCalculationDate())) {
 
-        for (NumberSet currentNumberSet : numberSetList) {
-            currentNumberSetDate = currentNumberSet.getDate(); // Datum des aktuellen Numbersets speichern
-
-            if (currentNumberSetDate.equals(targetDate)) { // jedes NumberSet wird mit Zieldatum verglichen
-                baseNumberSet = currentNumberSet; // bei erfolg wird das aktuelle NumberSet zum StartNumberSet
-                break;
-            }
-        }
-
-        targetDate = baseNumberSet.getDate().minusYears(timeIndicator); // yoy Datum bestimmen
-
-        if (targetDate.isAfter(lastPossibleCalculationDate())) { // Sicherung, dass yoyDate > LPC Date
-            for (NumberSet currentNumberSet : numberSetList) { // NumberSet mit yoyDatum finden
-                currentNumberSetDate = currentNumberSet.getDate();
-
-                if (currentNumberSetDate.equals(targetDate)) {
-                    yoyNumberSet = currentNumberSet;
-                    System.out.println("Worker " + workerID + ": YOY: Das targetDate ist: " + targetDate);
-                    break;
+                for (NumberSet currentNumberSet : numberSets) {
+                    if (currentNumberSet.getDate().isEqual(baseNumberSetDate.minusYears(timeIndicator))) {
+                        yoyNumberSet = currentNumberSet;
+                    }
                 }
             }
+
+            float startwert = baseNumberSet.getValues(bondIndex);
+            float endwert = yoyNumberSet.getValues(bondIndex);
+            float profitYoY = (startwert / endwert) - 1;
+            results.putResults(indexName, profitYoY);
         }
 
-        float startwert = baseNumberSet.getValues(bondIndex);
-        System.out.println("Worker " + workerID + ": YOY: Der Startwert ist: " + startwert);
-        float endwert = yoyNumberSet.getValues(bondIndex);
-        System.out.println("Worker " + workerID + ": YOY: Der Endwert ist: " + endwert);
-        float profitYoY = (startwert / endwert) - 1;
-        // TODO: Ausgabe auf 3 Stellen nach dem Komma begrenzen
-        System.out.println("Worker " + workerID + ": YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
+        // Console Reporting
+//        System.out.println("YOY: Das targetDate ist: " + targetDate);
+//        System.out.println("YOY: Der Startwert ist: " + startwert);
+//        System.out.println("YOY: Der Endwert ist: " + endwert);
+//        System.out.println("YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
 
-        // TODO: ADD FLOAT TO RESULT ARRAY
-        return profitYoY;
+        return results;
     }
-    //yoyBerechnung
+
+    private LocalDate lastPossibleCalculationDate() {
+
+        // erstes datum + time indicator = letztes mögliches berechnungsdatum
+        LocalDate lastPossibleCalcDate = numberSets.get(0).getDate().plusYears(timeIndicator);
+        return lastPossibleCalcDate;
+    }
 
 
 }

@@ -4,21 +4,21 @@ import org.apache.poi.ss.usermodel.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 public class WorkbookReader {
 
     private Workbook currentWorkbook;
     private Sheet currentSheet;
     private int[] sheetNumbers;
+    HashMap<String, Integer> indices = new HashMap<>();
 
     public WorkbookReader(Workbook workbook, int[] sheetNumbers) {
 
         currentWorkbook = workbook;
         this.sheetNumbers = sheetNumbers;
-
-
-        ;
     }
 
     public ArrayList<String> getValueNames(int sheetNumber) {
@@ -26,7 +26,7 @@ public class WorkbookReader {
         ArrayList<String> valueNames = new ArrayList<>();
         DataFormatter dataFormatter = new DataFormatter();
         currentSheet = currentWorkbook.getSheetAt(sheetNumber); // sheetNumber Parameter legt sheet des workbooks fest
-        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet No.: " +
+        System.out.println("WorkbookReader: Initialized. \nWorkbookReader: Reading Sheet: " +
                 currentWorkbook.getSheetName(sheetNumber));
         Iterator<Row> rowIterator = currentSheet.rowIterator();
         Row currentRow = rowIterator.next();
@@ -57,12 +57,30 @@ public class WorkbookReader {
         currentSheet = currentWorkbook.getSheetAt(sheetNumber);
         Iterator<Row> rowIterator = currentSheet.rowIterator();
 
+
         int rowCounter = 0;
         while (rowIterator.hasNext()) {
 
             Row currentRow = rowIterator.next();
+            if (rowCounter == 0) {
+                Iterator<Cell> bondIndexIterator = currentRow.cellIterator();
+                int mapCounter = 0;
+
+
+                while (bondIndexIterator.hasNext()) {
+                    Cell currentCell = bondIndexIterator.next();
+                    if (mapCounter == 0) {
+                    } else {
+                        String indexName = dataFormatter.formatCellValue(currentCell);
+                        int bondIndex = currentCell.getColumnIndex() - 1;
+                        indices.put(indexName, bondIndex);
+                        int i = 1;
+                    }
+                    mapCounter++;
+                }
+            }
             if (rowCounter != 0) {
-                NumberSet currentNumberSet = new NumberSet();
+                NumberSet currentNumberSet = new NumberSet(indices); // neues NumberSet wird erzeugt, Map übergeben
                 Iterator<Cell> cellIterator = currentRow.cellIterator();
                 int counter = 0;
 
@@ -74,9 +92,6 @@ public class WorkbookReader {
                     if (cellValue != "" && counter == 0) {
                         LocalDate localDate = dateConverter.formatDate(cellValue);
                         currentNumberSet.setDate(localDate);
-
-                        //System.out.println(currentNumberSet.getDate());
-
 
                         counter++;
 
@@ -93,9 +108,6 @@ public class WorkbookReader {
                         }
 
                         currentNumberSet.setValues(input);
-
-                        //System.out.println("Value of " + currentNumberSet.getValues(counter - 1));
-
                         counter++;
                     }
                 }
@@ -106,8 +118,10 @@ public class WorkbookReader {
                 }
             }
             rowCounter++;
+
         }
         System.out.println("WorkbookReader: numberSetList has been created.");
         return numberSetList;
     }
 }
+

@@ -10,10 +10,12 @@ public class Worker implements Callable<ResultObject> {
     private NumberSetList numberSetList;
     private Calculation calculation;
     private int timeIndicator;
+    private ResultObject results;
 
     public Worker(Calculation calculation, NumberSetList numberSetList) {
         this.calculation = calculation;
         this.numberSetList = numberSetList;
+
     }
 
     @Override
@@ -22,25 +24,19 @@ public class Worker implements Callable<ResultObject> {
 
         // Worker empfängt Daten zur Ausführung der Calculation
 
-        // Lesen der Calculation
-        // lastPossibleCalculationDate() in Calculation schreiben
-        // aufruf des entsprechenden Workers
-        //
+        // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
+        String calculatorType = calculation.getType();
 
-
-
-    }
-
-    private void createCalculator() {
-
-        // TODO Switch Case zur entscheidung welcher Worker erzeugt wird
-
-    }
-
-    private LocalDate lastPossibleCalculationDate() {
-
-        // erstes datum + time indicator = letztes mögliches berechnungsdatum
-        LocalDate lastPossibleCalcDate = numberSetList.getNumberSetList().get(0).getDate().plusYears(timeIndicator);
-        return lastPossibleCalcDate;
+        switch (calculatorType) {
+            case "yoy":
+                YoYCalculator yoyCalc = new YoYCalculator(calculation, numberSetList);
+                results = yoyCalc.calculate();
+                break;
+            case "maxdd":
+                MaxDDCalculator maxDDCalc = new MaxDDCalculator(calculation, numberSetList);
+                results = maxDDCalc.calculate();
+                break;
+        }
+        return results;
     }
 }
