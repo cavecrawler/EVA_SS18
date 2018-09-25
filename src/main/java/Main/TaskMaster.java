@@ -33,15 +33,13 @@ public class TaskMaster {
         executor.shutdown();
         executor.awaitTermination(20, TimeUnit.SECONDS);
 
-        ResultObject resultObject = new ResultObject();
         for (int i = 0; i < calculations.size(); i++) {
 
             if (futureResults.get(i).isDone()) {
                 try {
-                    resultObject = futureResults.get(i).get();
+                    calculations.get(i).setResult(futureResults.get(i).get());
                 } catch (Exception e) {
                 }
-                calculations.get(i).setResult(resultObject);
             }
         }
         int j = 1; //todo deletedebug

@@ -10,7 +10,6 @@ public class Worker implements Callable<ResultObject> {
     private NumberSetList numberSetList;
     private Calculation calculation;
     private int timeIndicator;
-    private ResultObject results;
 
     public Worker(Calculation calculation, NumberSetList numberSetList) {
         this.calculation = calculation;
@@ -23,18 +22,20 @@ public class Worker implements Callable<ResultObject> {
         // Worker empfängt Daten zur Ausführung der Calculation
 
         // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
-        String calculatorType = calculation.getType();
-
-        switch (calculatorType) {
+        ICalculator calculator;
+        switch (calculation.getType()){
             case "yoy":
-                YoYCalculator yoyCalc = new YoYCalculator(calculation, numberSetList);
-                results = yoyCalc.calculate();
+                calculator = new YoYCalculator(calculation, numberSetList);
+                System.out.println("YoYCalculator gestartet.");
                 break;
             case "maxdd":
-                MaxDDCalculator maxDDCalc = new MaxDDCalculator(calculation, numberSetList);
-                results = maxDDCalc.calculate();
+                calculator = new MaxDDCalculator(calculation, numberSetList);
+                System.out.println("MaxDDCalculator gestartet.");
                 break;
+            default:
+                calculator = new NullCalculator();
         }
-        return results;
+
+        return calculator.calculate();
     }
 }

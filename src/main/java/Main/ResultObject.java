@@ -7,12 +7,8 @@ public class ResultObject {
 
     Map<String, Float> resultMap;
 
-    public ResultObject(Map<String, Float> resultMap) {
-        this.resultMap = resultMap;
-    }
-
     public ResultObject() {
-
+       resultMap = new HashMap<String, Float>();
     }
 
     public Map<String, Float> getResultMap() {
