@@ -20,8 +20,6 @@ public class Worker implements Callable<ResultObject> {
 
     @Override
     public ResultObject call() {
-
-
         // Worker empfängt Daten zur Ausführung der Calculation
 
         // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
