@@ -1,8 +1,10 @@
 package Main;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.util.ArrayList;
+import Main.Calculators.ICalculator;
+import Main.Calculators.MaxDDCalculator;
+import Main.Calculators.NullCalculator;
+import Main.Calculators.YoYCalculator;
+
 import java.util.concurrent.Callable;
 
 public class Worker implements Callable<ResultObject> {

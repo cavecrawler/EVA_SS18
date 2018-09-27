@@ -1,10 +1,11 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NumberSetList {
 
-    private ArrayList<NumberSet> numberSetList = new ArrayList<>();
+    private List<NumberSet> numberSetList = new ArrayList<>();
 
     public void addNumberSet(NumberSet numberSet) {
         this.numberSetList.add(numberSet);
@@ -16,7 +17,7 @@ public class NumberSetList {
         return numberSetList.get(index);
     }
 
-    public ArrayList<NumberSet> getNumberSetList() {
+    public List<NumberSet> getNumberSetList() {
         return numberSetList;
     }
 

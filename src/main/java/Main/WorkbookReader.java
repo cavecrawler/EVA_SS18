@@ -61,6 +61,7 @@ public class WorkbookReader {
         int rowCounter = 0;
         while (rowIterator.hasNext()) {
 
+            // IndexNamen werden gemappt
             Row currentRow = rowIterator.next();
             if (rowCounter == 0) {
                 Iterator<Cell> bondIndexIterator = currentRow.cellIterator();
@@ -79,6 +80,7 @@ public class WorkbookReader {
                     mapCounter++;
                 }
             }
+            // Values werden geschrieben
             if (rowCounter != 0) {
                 NumberSet currentNumberSet = new NumberSet(indices); // neues NumberSet wird erzeugt, Map übergeben
                 Iterator<Cell> cellIterator = currentRow.cellIterator();
