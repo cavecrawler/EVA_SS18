@@ -1,13 +1,24 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <configuration>
 
-    <filepath>
-        src/main/resources/Rohdaten.xlsx
-    </filepath>
+    <source>
+        <filepath>
+            src/main/resources/Rohdaten.xlsx
+        </filepath>
+        <sheets>
+            0
+        </sheets>
+    </source>
 
-    <sheets>
-        0
-    </sheets>
+    <target>
+        <filepath>
+            src/main/resources/KPI_Zieldatei.xlsx
+        </filepath>
+        <sheets>
+            <sheet type="yoy">0</sheet>
+            <sheet type="maxdd">1</sheet>
+        </sheets>
+    </target>
 
     <!-- ConfigDocumentation:
 
@@ -36,7 +47,7 @@
             </indices>
         </calculation>
 
-        <calculation type="maxdd" year ="1">
+        <calculation type="maxdd" year="1">
             <indices>
                 <bondIndex>
                     HANG SENG - TOT RETURN IND
@@ -47,6 +58,16 @@
             </indices>
         </calculation>
 
+        <calculation type="maxdd" year="2">
+            <indices>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
         <calculation type="maxdd" year="3">
             <indices>
                 <bondIndex>
@@ -57,6 +78,29 @@
                 </bondIndex>
             </indices>
         </calculation>
+
+
+        <calculation type="maxdd" year="4">
+            <indices>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+        <calculation type="maxdd" year="5">
+            <indices>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
 
         <calculation type="yoy" year="2">
             <indices>

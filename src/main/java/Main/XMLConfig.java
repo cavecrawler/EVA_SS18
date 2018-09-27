@@ -29,26 +29,39 @@ public class XMLConfig {
     }
 
     // Liefert den relativen Dateipfad der Excel-Quelldatei
-    public String getFilepath() {
+    public String getSourceFilepath() {
 
-        String filepath = config.getString("filepath");
+        String filepath = config.getString("source.filepath");
         return filepath;
     }
 
+    public String getTargetFilepath() {
+
+        String filepath = config.getString("target.filepath");
+        return filepath;
+    }
+
+
     // Liefert die auszulesenden Sheets der Excel-Quelldatei
-    public int[] getSheets() {
-        int[] sheets = config.get(int[].class, "sheets");
-        return sheets;
-    }
-
-    // Liefert alle Jahre, für die Year over Year Berechnungen durchgeführt werden sollen
-    public int[] getYoYIndicators() {
-        int[] yoyIndicators = config.get(int[].class, "processing.yoy_indicators.yoy");
-        return yoyIndicators;
+    public int[] getSourceSheets() {
+        int[] sourceSheets = config.get(int[].class, "source.sheets");
+        return sourceSheets;
     }
 
 
-    public ArrayList<Calculation> getCalculations() {
+    public Map<String, Integer> getTargetSheets() {
+        int[] ints = config.get(int[].class, "target.sheets.sheet[@type]");
+        List<String> types = config.getList(String.class, "target.sheets.sheet");
+        Map<String, Integer> targetSheets = new HashMap<>();
+
+        for (int i=0; i<ints.length;i++) {
+            targetSheets.put(types.get(i), ints[i]);
+        }
+
+        return targetSheets;
+    }
+
+      public ArrayList<Calculation> getCalculations() {
 
         ArrayList<Calculation> calculations = new ArrayList<Calculation>();
         List<String> types = config.getList(String.class, "calculations.calculation[@type]");

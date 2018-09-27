@@ -1,4 +1,9 @@
-package Main;
+package Main.Calculators;
+
+import Main.Calculation;
+import Main.NumberSet;
+import Main.NumberSetList;
+import Main.ResultObject;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +14,7 @@ public class YoYCalculator implements ICalculator {
 
     private Calculation calculation;
     private NumberSetList numberSetList;
-    private ArrayList<NumberSet> numberSets;
+    private List<NumberSet> numberSets;
     private LocalDate baseNumberSetDate;
     private int timeIndicator;
     private NumberSet currentNumberSet;
@@ -35,12 +40,11 @@ public class YoYCalculator implements ICalculator {
         for (String indexName : indices) {
             int bondIndex = map.get(indexName);
             NumberSet baseNumberSet = numberSets.get(numberSets.size() - 1); // letztes Datum holen
-            NumberSet yoyNumberSet = new NumberSet();
+            NumberSet yoyNumberSet = null;
             baseNumberSetDate = baseNumberSet.getDate();
 
             // ist das benötigte Zieldatum in der Setlist vorhanden?
             if (baseNumberSetDate.minusYears(timeIndicator).isAfter(lastPossibleCalculationDate())) {
-
                 for (NumberSet currentNumberSet : numberSets) {
                     if (currentNumberSet.getDate().isEqual(baseNumberSetDate.minusYears(timeIndicator))) {
                         yoyNumberSet = currentNumberSet;
@@ -48,10 +52,12 @@ public class YoYCalculator implements ICalculator {
                 }
             }
 
-            float startwert = baseNumberSet.getValues(bondIndex);
-            float endwert = yoyNumberSet.getValues(bondIndex);
-            float profitYoY = (startwert / endwert) - 1;
-            results.putResults(indexName, profitYoY);
+            if (yoyNumberSet != null) {
+                float startwert = baseNumberSet.getValues(bondIndex);
+                float endwert = yoyNumberSet.getValues(bondIndex);
+                float profitYoY = (startwert / endwert) - 1;
+                results.putResults(indexName, profitYoY);
+            }
         }
 
         // Console Reporting

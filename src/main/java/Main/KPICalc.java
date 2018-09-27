@@ -2,11 +2,12 @@ package Main;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class KPICalc {
 
-    private ArrayList<NumberSet> numberSetList;
+    private List<NumberSet> numberSetList;
     private LocalDate baseDate;
     private LocalDate currentNumberSetDate;
     private int timeIndicator;
@@ -82,7 +83,7 @@ public class KPICalc {
 //        float endwert = yoyNumberSet.getValues(bondIndex);
 //        System.out.println("Worker " + workerID + ": YOY: Der Endwert ist: " + endwert);
 //        float profitYoY = (startwert / endwert) - 1;
-//        // TODO: Ausgabe auf 3 Stellen nach dem Komma begrenzen
+//
 //        System.out.println("Worker " + workerID + ": YOY: Die Performance YoY ist: " + profitYoY * 100 + " %.");
 //        return profitYoY;
 //    }
