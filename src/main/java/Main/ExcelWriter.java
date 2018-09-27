@@ -33,40 +33,35 @@ public class ExcelWriter {
 
         List<String> calculationTypes = new ArrayList<>();
 
+        Map<String, Integer> sheets = xmlConfig.getTargetSheets();
+        // Befüllen der ersten Spalte mit Indexnamen
+        for (Map.Entry<String, Integer> sheet : sheets.entrySet()) {
+            Sheet currentSheet = workbook.getSheetAt(xmlConfig.getTargetSheets().get(sheet.getKey()));
+            for (Map.Entry<String, Integer> entry : indices.entrySet()) {
+                Cell currentCell = currentSheet.createRow(entry.getValue()+1).createCell(0);
+                currentCell.setCellValue(entry.getKey());
+            }
+        }
+        int i = 1;
 
         for (Calculation calculation : calculations) {
-            calculationTypes.add(calculation.getType());
-        }
+            Sheet currentSheet = workbook.getSheetAt(xmlConfig.getTargetSheets().get(calculation.getType()));
 
-        for (String type : calculationTypes) {
-            Sheet currentSheet = workbook.getSheetAt(xmlConfig.getTargetSheets().get(type));
-
-            // Befüllen der ersten Spalte mit Indexnamen
-            Iterator<Row> rowIterator = currentSheet.rowIterator();
-            Row row = currentSheet.getRow(2);
-
-            for (Map.Entry<String, Integer> entry : indices.entrySet()) {
-                row.getCell(1).setCellValue(entry.getKey());
-                row = rowIterator.next();
-            }
-
-            for (Calculation calculation : calculations) {
-                if (calculation.getType() == type) {
-
-                    for (Map.Entry<String, Float> resultEntry : calculation.getResult().getResultMap().entrySet()) {
-                        row = currentSheet.getRow(indices.get(resultEntry.getKey()) + 2);
-                        row.getCell(calculation.getTimeIndicator() + 1).setCellValue(resultEntry.getValue());
-                    }
-                }
+            for (Map.Entry<String, Float> resultEntry : calculation.getResult().getResultMap().entrySet()) {
+                Row row = currentSheet.getRow(indices.get(resultEntry.getKey()) + 1);
+                row.createCell(calculation.getTimeIndicator()).setCellValue(resultEntry.getValue());
             }
         }
 
         try {
-            FileOutputStream outputStream = new FileOutputStream(xmlConfig.getTargetFilepath());
+            String resultFileName = xmlConfig.getResultFilepath();
+            FileOutputStream outputStream = new FileOutputStream(resultFileName);
             workbook.write(outputStream);
-            workbook.close();
-            outputStream.close();
-        } catch (Exception e) {
+//            workbook.close();
+//            outputStream.close();
+        } catch (
+                Exception e) {
         }
+
     }
 }

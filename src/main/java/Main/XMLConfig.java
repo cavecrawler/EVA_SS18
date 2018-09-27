@@ -36,11 +36,14 @@ public class XMLConfig {
     }
 
     public String getTargetFilepath() {
-
         String filepath = config.getString("target.filepath");
         return filepath;
     }
 
+    public String getResultFilepath() {
+        String filepath = config.getString("result.filepath");
+        return filepath;
+    }
 
     // Liefert die auszulesenden Sheets der Excel-Quelldatei
     public int[] getSourceSheets() {
@@ -50,8 +53,8 @@ public class XMLConfig {
 
 
     public Map<String, Integer> getTargetSheets() {
-        int[] ints = config.get(int[].class, "target.sheets.sheet[@type]");
-        List<String> types = config.getList(String.class, "target.sheets.sheet");
+        int[] ints = config.get(int[].class, "target.sheets.sheet");
+        List<String> types = config.getList(String.class, "target.sheets.sheet[@type]");
         Map<String, Integer> targetSheets = new HashMap<>();
 
         for (int i=0; i<ints.length;i++) {

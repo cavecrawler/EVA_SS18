@@ -29,11 +29,13 @@ public class Main {
         } catch (Exception e) {
         }
         System.out.println("Taskmaster beendet.");
-        int i=1;
+
 
         // ResultObjects werden aus Calculationlist gelesen und in das TargetSheet (yoy, maxdd, etc.) geschrieben
+        Map<String, Integer> sheets = xmlConfig.getTargetSheets();
         Map<String, Integer> indices = numberSetList.getFirstNumberSet().getIndices();
         ExcelWriter excelWriter = new ExcelWriter(calculations,xmlConfig,indices);
-
+        excelWriter.writeResultsInTargetExcel();
+        int i=1;
     }
 }
