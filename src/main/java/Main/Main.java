@@ -1,6 +1,8 @@
 package Main;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.*;
@@ -17,16 +19,16 @@ public class Main {
         // TODO hardcode sheetnumber entfernen
         NumberSetList numberSetList = workbookReader.getNumberSetList(0);     // numberSetList aus workbook lesen
 
+        // calculations List wird aus der config gelesen.
+        ArrayList<Calculation> calculations = xmlConfig.getCalculations();
 
-        //Prüfmethode um NumberSetList auf leere Objekte zu prüfen
-        numberSetList.checkNumberSetListForEmptyNumberSets();
-        Mapper map = new Mapper(workbookReader.getValueNames(0));     // Testmethodenaufruf um 1. Zeile mit Indize-Namen zu erhalten
-
-
-        //Taskmaster übernimmt das Starten der Threads nach Config Vorgaben
-        TaskMaster taskMaster = new TaskMaster(numberSetList, xmlConfig);
-        taskMaster.startThreads();
-
-
+        //Taskmaster erhält numberSetList und calculations List
+        TaskMaster taskMaster = new TaskMaster(numberSetList, calculations);
+        try {
+            taskMaster.startThreads();
+        } catch (Exception e) {
+        }
+        System.out.println("Taskmaster beendet.");
+        int i=1;
     }
 }

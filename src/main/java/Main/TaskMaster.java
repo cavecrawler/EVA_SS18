@@ -1,45 +1,48 @@
 package Main;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.concurrent.*;
 
 public class TaskMaster {
 
     private NumberSetList numberSetList;
-    private XMLConfig config;
+    private ArrayList<Calculation> calculations;
 
-
-    public TaskMaster(NumberSetList numberSetList, XMLConfig config) {
+    public TaskMaster(NumberSetList numberSetList, ArrayList<Calculation> calculations) {
 
         this.numberSetList = numberSetList;
-        this.config = config;
+        this.calculations = calculations;
     }
 
-    public void getTaskConfiguration() {
-        // TODO yoyindicators lesen und Array erstellen
-        // TODO maxDDindicators lesen und in Array schreiben
+    public void startThreads() throws InterruptedException {
 
-        config.getYoYIndicators();
-    }
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+        ArrayList<Future<ResultObject>> futureResults = new ArrayList<Future<ResultObject>>();
 
-    public void startThreads() {
+        for (Calculation currentCalculation : calculations) {
 
-        System.out.println("TaskMaster: Starting Threads...");
-        ExecutorService executor = Executors.newFixedThreadPool(2);
-        int[] yearOverYearIndicators = config.getYoYIndicators();
+            // für jede Calculation wird ein Worker gestartet; das Ergebnis wird in einem Result Objekt gespeichert
+            Future<ResultObject> future = executor.submit(new Worker(currentCalculation, numberSetList));
 
-        for (int yoyIndicator : yearOverYearIndicators) { // für jeden yoyIndicator wird eine Berechnung angestellt
-            for (int id = 1; id <=3; id++) {
+            // Future Objekt wird in Results-Array geschrieben, die Ergebnisse werden gesammelt
+            futureResults.add(future);
 
-                if (yoyIndicator != 0) {
-                    executor.submit(new Worker(id, yoyIndicator, numberSetList));
-                    int test2 = 1;
+        }
+
+        executor.shutdown();
+        executor.awaitTermination(20, TimeUnit.SECONDS);
+
+        for (int i = 0; i < calculations.size(); i++) {
+
+            if (futureResults.get(i).isDone()) {
+                try {
+                    calculations.get(i).setResult(futureResults.get(i).get());
+                } catch (Exception e) {
                 }
             }
         }
-        int test = 1;
-        executor.shutdown();
-    }
+        int j = 1; //todo deletedebug
 
+    }
 }

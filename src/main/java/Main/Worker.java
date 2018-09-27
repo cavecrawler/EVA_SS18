@@ -2,43 +2,40 @@ package Main;
 
 import java.lang.reflect.Array;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.concurrent.Callable;
 
-public class Worker implements Runnable {
+public class Worker implements Callable<ResultObject> {
 
-    private int workerID;
-    private int indicator;
     private NumberSetList numberSetList;
-    private LocalDate targetDate;
+    private Calculation calculation;
+    private int timeIndicator;
 
-    public Worker(int id, int indicator, NumberSetList numberSetList) {
-        this.workerID = id;
-        this.indicator = indicator;
+    public Worker(Calculation calculation, NumberSetList numberSetList) {
+        this.calculation = calculation;
         this.numberSetList = numberSetList;
+
     }
 
     @Override
-    public void run() {
+    public ResultObject call() {
+        // Worker empfängt Daten zur Ausführung der Calculation
 
-        synchronized (this.getClass()) {
-            System.out.println("Worker " + workerID + ": Starting");
-
-            // StartDatum überprüfen
-            if (targetDate == null) {
-                // TODO derzeit hardgecoded, letzter Listeneintrag wird als startDatum ermittelt
-                targetDate = numberSetList.getLastNumberSet().getDate();
-                //TODO: getFirstNumberSet() erstellen
-            }
-
-            KPICalc calc = new KPICalc(numberSetList);
-            // TODO: bondIndex dynamisch aus Mapper Klasse gestalten.
-
-            calc.calculateYoYProfit(workerID, targetDate, 0, indicator);
-            //calc.calculate_MaxDD(workerID, targetDate, 0, indicator);
-
-            // TODO: alle MaxDD berechnen
-
-
-            System.out.println("Worker " + workerID + ": Closing");
+        // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
+        ICalculator calculator;
+        switch (calculation.getType()){
+            case "yoy":
+                calculator = new YoYCalculator(calculation, numberSetList);
+                System.out.println("YoYCalculator gestartet.");
+                break;
+            case "maxdd":
+                calculator = new MaxDDCalculator(calculation, numberSetList);
+                System.out.println("MaxDDCalculator gestartet.");
+                break;
+            default:
+                calculator = new NullCalculator();
         }
+
+        return calculator.calculate();
     }
 }
