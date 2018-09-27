@@ -27,22 +27,32 @@
     </result>
 
     <!-- ConfigDocumentation:
-
     Unterstützte Bond Indices
-
     DAX 30 PERFORMANCE - TOT RETURN IND
     FTSE 100 - TOT RETURN IND
     FRANCE CAC 40 - TOT RETURN IND
     HANG SENG - TOT RETURN IND
     BRAZIL BOVESPA - TOT RETURN IND
-    S&P/TSX COMPOSITE INDEX - TOT RETURN IND
-
+    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
     <params>
         <param name="year">1</param>
     </param>
     -->
 
+
     <calculations>
+        <calculation type="yoy" year="4">
+            <indices>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+
+            </indices>
+        </calculation>
+
         <calculation type="yoy" year="1">
             <indices>
                 <bondIndex>

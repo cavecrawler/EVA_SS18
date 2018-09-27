@@ -44,13 +44,13 @@ public class YoYCalculator implements ICalculator {
             baseNumberSetDate = baseNumberSet.getDate();
 
             // ist das benötigte Zieldatum in der Setlist vorhanden?
-            if (baseNumberSetDate.minusYears(timeIndicator).isAfter(lastPossibleCalculationDate())) {
+            //if (baseNumberSetDate.minusYears(timeIndicator).compareTo(lastPossibleCalculationDate()) >=0 ) {
                 for (NumberSet currentNumberSet : numberSets) {
                     if (currentNumberSet.getDate().isEqual(baseNumberSetDate.minusYears(timeIndicator))) {
                         yoyNumberSet = currentNumberSet;
                     }
                 }
-            }
+           // }
 
             if (yoyNumberSet != null) {
                 float startwert = baseNumberSet.getValues(bondIndex);
