@@ -37,10 +37,26 @@
     <params>
         <param name="year">1</param>
     </param>
+
+    5 indizes, für 4 jahre
     -->
 
 
     <calculations>
+        <calculation type="yoy" year="3">
+            <indices>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    HANG SENG - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
         <calculation type="yoy" year="4">
             <indices>
                 <bondIndex>
@@ -49,7 +65,6 @@
                 <bondIndex>
                     S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
                 </bondIndex>
-
             </indices>
         </calculation>
 
@@ -114,6 +129,7 @@
                 </bondIndex>
             </indices>
         </calculation>
+
         <calculation type="maxdd" year="5">
             <indices>
                 <bondIndex>

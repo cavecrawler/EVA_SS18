@@ -42,27 +42,27 @@ public class MaxDDCalculator implements ICalculator {
         ResultObject resultObject = new ResultObject();
         float MaxDD_Final = 0;
         for (String indexName : indices) {
-            if (baseDate.minusYears(timeIndicator).isAfter(lastPossibleCalculationDate())) {
+
             int bondIndex = map.get(indexName);
 
-                for (NumberSet value : numberSets) {
-                    LocalDate currentNumberSetDate = value.getDate();
+            for (NumberSet value : numberSets) {
+                LocalDate currentNumberSetDate = value.getDate();
 
-                    if (currentNumberSetDate.compareTo(baseDate) >= 0) {
-                        value_test = value.getValues(bondIndex);
+                if (currentNumberSetDate.compareTo(targetDate) >= 0) {
+                    value_test = value.getValues(bondIndex);
 
-                        if (value_test > value_max_test) {
-                            value_max_test = value.getValues(bondIndex);
-                        }
+                    if (value_test > value_max_test) {
+                        value_max_test = value_test;
+                    }
 
-                        MaxDD = (value_test / value_max_test) - 1;
+                    MaxDD = (value_test / value_max_test) - 1;
 
-                        if (MaxDD < MaxDD_Final) {
-                            MaxDD_Final = MaxDD;
-                        }
+                    if (MaxDD < MaxDD_Final) {
+                        MaxDD_Final = MaxDD;
                     }
                 }
             }
+
 
 //        System.out.println("Worker " + workerID + ": MAX: Das Zieldatum ist: " + this.baseDate);
 //        System.out.println("Worker " + workerID + ": MAX: Der Max Wert ist: " + value_max_test);
