@@ -57,17 +57,16 @@ public class ExcelWriter {
         }
 
         try {
-            //TODO Dateiname dynamisch gestaltet
-            Date date = new Date();
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
-            String fileCreationString = (xmlConfig.getResultFilepath() + dateFormat.format(date) + "_KPI_Results.xlsx");
+            //dynamische Dateinamen
+//            Date date = new Date();
+//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
+//            String fileCreationString = (xmlConfig.getResultFilepath() + dateFormat.format(date) + "_KPI_Results.xlsx");
+            String fileCreationString = (xmlConfig.getResultFilepath() + "KPI_Results.xlsx");
             FileOutputStream outputStream = new FileOutputStream(fileCreationString);
             workbook.write(outputStream);
-//            workbook.close();
-//            outputStream.close();
+
         } catch (
                 Exception e) {
         }
-
     }
 }
