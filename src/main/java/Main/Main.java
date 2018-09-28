@@ -11,7 +11,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, InvalidFormatException {
 
-
         XMLConfig xmlConfig = new XMLConfig();
         ExcelLoader excelLoader = new ExcelLoader(xmlConfig.getSourceFilepath());    //Exceldatei laden
         Workbook workbook = excelLoader.getWorkbook(); //workbook holen

@@ -40,9 +40,9 @@ public class MaxDDCalculator implements ICalculator {
         LocalDate targetDate = baseDate.minusYears(timeIndicator);
 
         ResultObject resultObject = new ResultObject();
-        float MaxDD_Final = 0;
-        for (String indexName : indices) {
 
+        for (String indexName : indices) {
+            float MaxDD_Final = 0;
             int bondIndex = map.get(indexName);
 
             for (NumberSet value : numberSets) {

@@ -22,7 +22,7 @@
 
     <result>
         <filepath>
-            src/main/resources/KPI_Results.xlsx
+            src/main/resources/results/
         </filepath>
     </result>
 
@@ -43,100 +43,22 @@
 
 
     <calculations>
-        <calculation type="yoy" year="3">
-            <indices>
-                <bondIndex>
-                    BRAZIL BOVESPA - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    HANG SENG - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
-        <calculation type="yoy" year="4">
-            <indices>
-                <bondIndex>
-                    BRAZIL BOVESPA - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
         <calculation type="yoy" year="1">
             <indices>
                 <bondIndex>
-                    FRANCE CAC 40 - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    DAX 30 PERFORMANCE - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    HANG SENG - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
-        <calculation type="maxdd" year="1">
-            <indices>
-                <bondIndex>
-                    HANG SENG - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    FTSE 100 - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
-        <calculation type="maxdd" year="2">
-            <indices>
-                <bondIndex>
-                    FRANCE CAC 40 - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
                     DAX 30 PERFORMANCE - TOT RETURN IND
                 </bondIndex>
                 <bondIndex>
                     FTSE 100 - TOT RETURN IND
                 </bondIndex>
-            </indices>
-        </calculation>
-
-        <calculation type="maxdd" year="3">
-            <indices>
                 <bondIndex>
                     FRANCE CAC 40 - TOT RETURN IND
                 </bondIndex>
                 <bondIndex>
-                    FTSE 100 - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
-
-        <calculation type="maxdd" year="4">
-            <indices>
-                <bondIndex>
-                    FRANCE CAC 40 - TOT RETURN IND
+                    BRAZIL BOVESPA - TOT RETURN IND
                 </bondIndex>
                 <bondIndex>
-                    FTSE 100 - TOT RETURN IND
-                </bondIndex>
-            </indices>
-        </calculation>
-
-        <calculation type="maxdd" year="5">
-            <indices>
-                <bondIndex>
-                    FRANCE CAC 40 - TOT RETURN IND
-                </bondIndex>
-                <bondIndex>
-                    FTSE 100 - TOT RETURN IND
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
                 </bondIndex>
             </indices>
         </calculation>
@@ -149,8 +71,181 @@
                 <bondIndex>
                     FTSE 100 - TOT RETURN IND
                 </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
             </indices>
         </calculation>
+
+        <calculation type="yoy" year="3">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    HANG SENG - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="4">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="5">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="1">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="2">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="3">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="4">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="5">
+            <indices>
+                <bondIndex>
+                    DAX 30 PERFORMANCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FTSE 100 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    FRANCE CAC 40 - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    BRAZIL BOVESPA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>
+                    S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
     </calculations>
 
 </configuration>

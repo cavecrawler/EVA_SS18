@@ -6,6 +6,10 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class ExcelWriter {
@@ -38,11 +42,10 @@ public class ExcelWriter {
         for (Map.Entry<String, Integer> sheet : sheets.entrySet()) {
             Sheet currentSheet = workbook.getSheetAt(xmlConfig.getTargetSheets().get(sheet.getKey()));
             for (Map.Entry<String, Integer> entry : indices.entrySet()) {
-                Cell currentCell = currentSheet.createRow(entry.getValue()+1).createCell(0);
+                Cell currentCell = currentSheet.createRow(entry.getValue() + 1).createCell(0);
                 currentCell.setCellValue(entry.getKey());
             }
         }
-        int i = 1;
 
         for (Calculation calculation : calculations) {
             Sheet currentSheet = workbook.getSheetAt(xmlConfig.getTargetSheets().get(calculation.getType()));
@@ -54,8 +57,11 @@ public class ExcelWriter {
         }
 
         try {
-            String resultFileName = xmlConfig.getResultFilepath();
-            FileOutputStream outputStream = new FileOutputStream(resultFileName);
+            //TODO Dateiname dynamisch gestaltet
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
+            String fileCreationString = (xmlConfig.getResultFilepath() + dateFormat.format(date) + "_KPI_Results.xlsx");
+            FileOutputStream outputStream = new FileOutputStream(fileCreationString);
             workbook.write(outputStream);
 //            workbook.close();
 //            outputStream.close();
