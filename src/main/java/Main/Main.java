@@ -16,7 +16,7 @@ public class Main {
         Workbook workbook = excelLoader.getWorkbook(); //workbook holen
         WorkbookReader workbookReader = new WorkbookReader(workbook, xmlConfig.getSourceSheets());  //workbookReader starten
 
-        NumberSetList numberSetList = workbookReader.getNumberSetList(0);     // numberSetList aus workbook lesen
+        NumberSetList numberSetList = workbookReader.getNumberSetList(xmlConfig.getSourceSheets()[0]);     // numberSetList aus workbook lesen
 
         // calculations List wird aus der xmlConfig gelesen.
         ArrayList<Calculation> calculations = xmlConfig.getCalculations();
