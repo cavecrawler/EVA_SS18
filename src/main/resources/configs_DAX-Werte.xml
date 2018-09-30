@@ -1,0 +1,709 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- ConfigDocumentation:
+        Unterstützte Bond Indices
+        DAX 30 PERFORMANCE - TOT RETURN IND
+        FTSE 100 - TOT RETURN IND
+        FRANCE CAC 40 - TOT RETURN IND
+        HANG SENG - TOT RETURN IND
+        BRAZIL BOVESPA - TOT RETURN IND
+        S&amp;P/TSX COMPOSITE INDEX - TOT RETURN IND
+
+        Example Calculation:
+
+        <calculation type="yoy" year="1">
+                <indices>
+                    <bondIndex>
+                        DAX 30 PERFORMANCE - TOT RETURN IND
+                    </bondIndex>
+                    <bondIndex>
+                        FTSE 100 - TOT RETURN IND
+                    </bondIndex>
+                </indices>
+            </calculation>
+
+        <params>
+            <param name="year">1</param>
+        </param>
+
+        -->
+<configuration>
+    <source>
+        <filepath>
+            src/main/resources/Rohdaten.xlsx
+        </filepath>
+        <sheets>
+            1
+        </sheets>
+    </source>
+
+    <target>
+        <filepath>
+            src/main/resources/KPI_Zieldatei.xlsx
+        </filepath>
+        <sheets>
+            <sheet type="yoy">0</sheet>
+            <sheet type="maxdd">1</sheet>
+        </sheets>
+    </target>
+
+    <result>
+        <filepath>
+            src/main/resources/results/
+        </filepath>
+    </result>
+
+
+    <calculations>
+        <calculation type="yoy" year="1">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="2">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="3">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="4">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="yoy" year="5">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="1">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="2">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="3">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="4">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+        <calculation type="maxdd" year="5">
+            <indices>
+                <bondIndex>ADIDAS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>ALLIANZ - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BASF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BMW - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BAYER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>BEIERSDORF - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COMMERZBANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>CONTINENTAL - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>COVESTRO - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DAIMLER - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BANK - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE BOERSE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE POST - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE TELEKOM - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>E ON N - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS MED.CARE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>FRESENIUS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HEIDELBERGCEMENT - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>HENKEL PREFERENCE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>INFINEON TECHNOLOGIES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>LINDE (TENDERED) SHARES - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>DEUTSCHE LUFTHANSA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MERCK KGAA - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>MUENCHENER RUCK. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>RWE - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SAP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>SIEMENS - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>THYSSENKRUPP - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VOLKSWAGEN PREF. - TOT RETURN IND
+                </bondIndex>
+                <bondIndex>VONOVIA - TOT RETURN IND
+                </bondIndex>
+            </indices>
+        </calculation>
+
+    </calculations>
+
+</configuration>
