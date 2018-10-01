@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Calculation {
 
-    String type;
-    List<String> indices;
-    int timeIndicator;
+    private String type;
+    private List<String> indices;
+    private int timeIndicator;
     private ResultObject result;
 
     public Calculation(String type, List<String> indices, int timeIndicator) {

@@ -14,10 +14,10 @@ import java.util.*;
 
 public class ExcelWriter {
 
-    List<Calculation> calculations;
-    XMLConfig xmlConfig;
-    Workbook workbook;
-    Map<String, Integer> indices;
+    private List<Calculation> calculations;
+    private XMLConfig xmlConfig;
+    private Workbook workbook;
+    private Map<String, Integer> indices;
 
     public ExcelWriter(List<Calculation> calculations, XMLConfig xmlConfig, Map<String, Integer> indices) throws IOException, InvalidFormatException {
         this.calculations = calculations;

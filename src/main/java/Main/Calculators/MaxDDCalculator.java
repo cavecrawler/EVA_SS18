@@ -16,12 +16,6 @@ public class MaxDDCalculator implements ICalculator {
     private List<NumberSet> numberSets;
 
 
-    private int timeIndicator;
-    private float MaxDD;
-    private float value_test;
-    private float value_max_test = 0;
-
-
     public MaxDDCalculator(Calculation calculation, NumberSetList numberSetList) {
         this.calculation = calculation;
         this.numberSets = numberSetList.getNumberSetList();
@@ -36,13 +30,16 @@ public class MaxDDCalculator implements ICalculator {
         Map<String, Integer> map = numberSets.get(0).getIndices();
         NumberSet baseNumberSet = numberSets.get(numberSets.size() - 1); // letztes Datum holen
         LocalDate baseDate = baseNumberSet.getDate();
-        timeIndicator = calculation.getTimeIndicator();
+        int timeIndicator = calculation.getTimeIndicator();
         LocalDate targetDate = baseDate.minusYears(timeIndicator);
 
         ResultObject resultObject = new ResultObject();
 
         for (String indexName : indices) {
+            float value_max_test = 0;
             float MaxDD_Final = 0;
+            float MaxDD;
+            float value_test;
             int bondIndex = map.get(indexName);
 
             for (NumberSet value : numberSets) {
@@ -75,6 +72,7 @@ public class MaxDDCalculator implements ICalculator {
     private LocalDate lastPossibleCalculationDate() {
 
         // erstes datum + time indicator = letztes mögliches berechnungsdatum
+        int timeIndicator = calculation.getTimeIndicator();
         LocalDate lastPossibleCalcDate = numberSets.get(0).getDate().plusYears(timeIndicator);
         return lastPossibleCalcDate;
     }

@@ -3,7 +3,7 @@ package Main;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NumberSetList {
+public class NumberSetList extends NumberSet {
 
     private List<NumberSet> numberSetList = new ArrayList<>();
 
