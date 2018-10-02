@@ -83,4 +83,9 @@ public class XMLConfig {
 
         return calculations;
     }
+
+    public boolean getMultithreading() {
+        boolean enableMT = config.getBoolean("multithreading");
+        return enableMT;
+    }
 }

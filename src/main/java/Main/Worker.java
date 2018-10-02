@@ -25,6 +25,10 @@ public class Worker implements Callable<ResultObject> {
 
         // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
         ICalculator calculator;
+//        try {
+//        Thread.sleep(1000);}
+//        catch (Exception e) {}
+
         switch (calculation.getType()){
             case "yoy":
                 calculator = new YoYCalculator(calculation, numberSetList);

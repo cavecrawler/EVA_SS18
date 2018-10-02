@@ -27,6 +27,10 @@
 
         -->
 <configuration>
+    <multithreading>
+        true
+    </multithreading>
+
     <source>
         <filepath>
             src/main/resources/Rohdaten.xlsx
@@ -86,6 +90,7 @@
             </indices>
         </calculation>
 
+    <calculations>
         <calculation type="yoy" year="2">
             <indices>
                 <bondIndex>DAX 30 PERFORMANCE - TOT RETURN IND
@@ -103,6 +108,7 @@
             </indices>
         </calculation>
 
+    <calculations>
         <calculation type="yoy" year="3">
             <indices>
                 <bondIndex>DAX 30 PERFORMANCE - TOT RETURN IND
@@ -120,6 +126,7 @@
             </indices>
         </calculation>
 
+    <calculations>
         <calculation type="yoy" year="4">
             <indices>
                 <bondIndex>DAX 30 PERFORMANCE - TOT RETURN IND
@@ -137,6 +144,7 @@
             </indices>
         </calculation>
 
+    <calculations>
         <calculation type="yoy" year="5">
             <indices>
                 <bondIndex>DAX 30 PERFORMANCE - TOT RETURN IND
@@ -238,6 +246,7 @@
                 </bondIndex>
             </indices>
         </calculation>
+
 
     </calculations>
 
