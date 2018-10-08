@@ -1,6 +1,5 @@
 package Main;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.concurrent.*;
 
@@ -42,7 +41,5 @@ public class TaskMaster {
                 }
             }
         }
-        int j = 1; //todo deletedebug
-
     }
 }

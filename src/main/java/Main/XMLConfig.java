@@ -51,7 +51,6 @@ public class XMLConfig {
         return sourceSheets;
     }
 
-
     public Map<String, Integer> getTargetSheets() {
         int[] ints = config.get(int[].class, "target.sheets.sheet");
         List<String> types = config.getList(String.class, "target.sheets.sheet[@type]");
@@ -60,7 +59,6 @@ public class XMLConfig {
         for (int i=0; i<ints.length;i++) {
             targetSheets.put(types.get(i), ints[i]);
         }
-
         return targetSheets;
     }
 
@@ -78,8 +76,6 @@ public class XMLConfig {
             Calculation currentCalculation = new Calculation(type,bondIndices,timeIndicator);
             calculations.add(currentCalculation);
         }
-        int i = 1;
-
 
         return calculations;
     }

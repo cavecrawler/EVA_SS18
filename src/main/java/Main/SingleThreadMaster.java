@@ -20,9 +20,6 @@ public class SingleThreadMaster {
             Worker worker = new Worker(currentCalculation, numberSetList);
             ResultObject result = worker.call();
             currentCalculation.setResult(result);
-            int i=1;
         }
-
-        int j = 1; //todo deletedebug
     }
 }

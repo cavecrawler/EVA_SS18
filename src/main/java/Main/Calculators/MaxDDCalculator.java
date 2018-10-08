@@ -6,7 +6,6 @@ import Main.NumberSetList;
 import Main.ResultObject;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -26,7 +25,6 @@ public class MaxDDCalculator implements ICalculator {
 
         List<String> indices = calculation.getIndices();
 
-        //TODO maxDD überarbeiten
         Map<String, Integer> map = numberSets.get(0).getIndices();
         NumberSet baseNumberSet = numberSets.get(numberSets.size() - 1); // letztes Datum holen
         LocalDate baseDate = baseNumberSet.getDate();
