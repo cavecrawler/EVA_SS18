@@ -6,6 +6,8 @@ import org.apache.poi.ss.usermodel.*;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class ExcelWriter {
@@ -54,10 +56,10 @@ public class ExcelWriter {
 
         try {
             //dynamische Dateinamen
-//            Date date = new Date();
-//            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
-//            String fileCreationString = (xmlConfig.getResultFilepath() + dateFormat.format(date) + "_KPI_Results.xlsx");
-            String fileCreationString = (xmlConfig.getResultFilepath() + "KPI_Results.xlsx");
+            Date date = new Date();
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_hh-mm-ss");
+            String fileCreationString = (xmlConfig.getResultFilepath() + dateFormat.format(date) + "_KPI_Results.xlsx");
+//          String fileCreationString = (xmlConfig.getResultFilepath() + "KPI_Results.xlsx");
             FileOutputStream outputStream = new FileOutputStream(fileCreationString);
             workbook.write(outputStream);
 

@@ -15,10 +15,7 @@ public class Worker implements Callable<ResultObject> {
         // Worker empfängt Daten zur Ausführung der Calculation
         this.calculation = calculation;
         this.numberSetList = numberSetList;
-        try {
-            Thread.sleep(500);
-        } catch (Exception e) {
-        }
+
     }
 
 
@@ -39,6 +36,12 @@ public class Worker implements Callable<ResultObject> {
             default:
                 calculator = new NullCalculator();
         }
+
+        //Simulation einer hohen Last im Task
+//        try {
+//            Thread.sleep(500);
+//        } catch (Exception e) {
+//        }
 
         return calculator.calculate();
     }
