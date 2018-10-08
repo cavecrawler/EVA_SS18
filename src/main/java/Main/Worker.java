@@ -4,28 +4,27 @@ import Main.Calculators.ICalculator;
 import Main.Calculators.MaxDDCalculator;
 import Main.Calculators.NullCalculator;
 import Main.Calculators.YoYCalculator;
-
 import java.util.concurrent.Callable;
 
 public class Worker implements Callable<ResultObject> {
 
     private NumberSetList numberSetList;
     private Calculation calculation;
-    private int timeIndicator;
 
     public Worker(Calculation calculation, NumberSetList numberSetList) {
+        // Worker empfängt Daten zur Ausführung der Calculation
         this.calculation = calculation;
         this.numberSetList = numberSetList;
 
     }
 
+
     @Override
     public ResultObject call() {
-        // Worker empfängt Daten zur Ausführung der Calculation
-
         // Lesen des Calculation-Types und Aufruf des entsprechenden Workers
         ICalculator calculator;
-        switch (calculation.getType()){
+
+        switch (calculation.getType()) {
             case "yoy":
                 calculator = new YoYCalculator(calculation, numberSetList);
                 System.out.println("YoYCalculator gestartet.");
@@ -37,6 +36,12 @@ public class Worker implements Callable<ResultObject> {
             default:
                 calculator = new NullCalculator();
         }
+
+        //Simulation einer hohen Last im Task
+//        try {
+//            Thread.sleep(500);
+//        } catch (Exception e) {
+//        }
 
         return calculator.calculate();
     }
